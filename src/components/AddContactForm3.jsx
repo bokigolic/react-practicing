@@ -63,10 +63,17 @@ const AddContactForm3 = () => {
   }
 
   const handleAddNumber = (e) => {
-    if (newPhone !== '') { // prevent adding ampty field
-      setPhoneArr([...phoneArr, newPhone]);
-      // nakon unosa broja praznimo polje za broj
-      setNewPhone('');
+    if (newPhone !== '') { // prevent adding ampty 
+      const newphonePrepared = newPhone.trim(); // uklanja nehoticno unete razmake na pocetku ili kraju teksta
+      if (phoneArr.includes(newphonePrepared)) {
+        // duplicate!!!!
+        // do nothing
+      } else {
+        // upisujemo samo ako nije duplikat
+        setPhoneArr([...phoneArr, newphonePrepared]);
+        // nakon unosa broja praznimo polje za broj
+        setNewPhone('');
+      }
     }
   };
 
@@ -131,7 +138,7 @@ const AddContactForm3 = () => {
           value={newPhone}
           onChange={handleChangeNewPhone}
         />
-        <button onClick={handleAddNumber}>add number</button>
+        <button type="button" onClick={handleAddNumber}>add number</button>
       </div>
 
       <h4>Multiple delete selected</h4>
@@ -151,12 +158,12 @@ const AddContactForm3 = () => {
           );
         })}
       </div>
-      <button onClick={handleDeleteSelected}>Delete selected</button>
+      <button type="button" onClick={handleDeleteSelected}>Delete selected</button>
 
 
       <br />
       <br />
-      <button>Save contact</button>
+      <button type="submit">Save contact</button>
 
     </form>
   )
