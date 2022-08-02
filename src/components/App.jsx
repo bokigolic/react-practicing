@@ -1,11 +1,13 @@
 import '../scss/style.scss';
-import TestForm from './TestForm';
+import AddContactForm from './AddContactForm';
+import AddContactForm2 from './AddContactForm2';
 
 const App = () => {
   return (
     <div className="App">
       App
-      <TestForm />
+      <AddContactForm />
+      <AddContactForm2 />
     </div>
   );
 }

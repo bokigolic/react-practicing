@@ -1,11 +1,12 @@
 import { useState } from "react";
 
-const TestForm = () => {
+const AddContactForm = () => {
 
   const preset = {
     nickname: "",
     email: "",
     favorite: false,
+    phone: ""
   };
 
   const [state, setState] = useState(preset);
@@ -21,10 +22,16 @@ const TestForm = () => {
     });
   }
 
+  const handleSaveContact = (e) => {
+    e.preventDefault(); // da taster unutar forme ne bi po defaultu slao na server i refreshovao itd.
+
+    const data = state;
+    console.log('Save contact', data);
+  };
 
   return (
-    <form>
-      <h1>Test form</h1>
+    <form onSubmit={handleSaveContact}>
+      <h1>Add Contact Form</h1>
 
       <div>
         <label>Nickname</label>
@@ -53,13 +60,22 @@ const TestForm = () => {
           onChange={handleChange}
         />
       </div>
+      <div>
+        <label>Phone number</label>
+        <input
+          type="text"
+          name="phone"
+          value={state.phone}
+          onChange={handleChange}
+        />
+      </div>
 
-      <h4>Phone numbers</h4>
 
 
+      <button>Save contact</button>
 
     </form>
   )
 };
 
-export default TestForm;
+export default AddContactForm;
