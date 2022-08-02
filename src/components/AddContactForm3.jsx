@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const AddContactForm2 = () => {
+const AddContactForm3 = () => {
 
   const preset = {
     nickname: "",
@@ -11,6 +11,40 @@ const AddContactForm2 = () => {
   const [state, setState] = useState(preset);
   const [phoneArr, setPhoneArr] = useState([]); // array of states
   const [newPhone, setNewPhone] = useState('');
+  const [selectedArr, setSelectedArr] = useState([]); // array of states
+
+  const _handleChangeSelected = (phone, checked) => {
+    if (checked) {
+      // selected
+      setSelectedArr([...selectedArr, phone]); // add selected number to list
+    } else {
+      // deselected
+      // TODO remove selected number from list
+      const updatedSeklectedState = selectedArr.filter((phone2)=>{
+        if (phone2 === phone) {
+          // removine deselcted phone
+          return false;
+        }
+        return true; // all other numbers stay in array
+      });
+      setSelectedArr(updatedSeklectedState);
+    }
+  };
+
+  const handleDeleteSelected = (e)=>{
+    const phoneArrAfterDelete = phoneArr.filter((phone)=>{
+      if (selectedArr.includes(phone)) {
+        // ako se phone nalazi u nizu selektovanih
+        return false; // delete because is selected
+      }
+      return true; // all others stay in array
+    });
+    setPhoneArr(phoneArrAfterDelete);
+    // takodje cistimo sve iz niza selektovanih
+    setSelectedArr([]);
+  };
+
+
 
   const handleChange = (e) => {
     // univerzalni handleChange za sve forme, radi i za checboxo
@@ -23,12 +57,12 @@ const AddContactForm2 = () => {
     });
   }
 
-  const handleChangeNewPhone = (e)=> {
+  const handleChangeNewPhone = (e) => {
     const newPhoneNumber = e.target.value;
     setNewPhone(newPhoneNumber);
   }
 
-  const handleAddNumber = (e)=>{
+  const handleAddNumber = (e) => {
     if (newPhone !== '') { // prevent adding ampty field
       setPhoneArr([...phoneArr, newPhone]);
       // nakon unosa broja praznimo polje za broj
@@ -49,8 +83,9 @@ const AddContactForm2 = () => {
 
   return (
     <form onSubmit={handleSaveContact}>
-      <h1>Add Contact Form 2</h1>
+      <h1>Add Contact Form 3</h1>
       <p>with multiple phone numbers</p>
+      <p>and with multiple fields/checkboxes</p>
 
       <div>
         <label>Nickname</label>
@@ -99,10 +134,32 @@ const AddContactForm2 = () => {
         <button onClick={handleAddNumber}>add number</button>
       </div>
 
+      <h4>Multiple delete selected</h4>
+      <div>
+        {phoneArr.map((phone) => {
+          return (
+            <div key={phone}>
+              <input
+                type="checkbox"
+                onChange={(e) => {
+                  const checked = e.target.checked;
+                  _handleChangeSelected(phone, checked);
+                }}
+              />
+              {phone}
+            </div>
+          );
+        })}
+      </div>
+      <button onClick={handleDeleteSelected}>Delete selected</button>
+
+
+      <br />
+      <br />
       <button>Save contact</button>
 
     </form>
   )
 };
 
-export default AddContactForm2;
+export default AddContactForm3;
