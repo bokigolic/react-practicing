@@ -2,6 +2,7 @@ import { useState } from "react";
 
 const CommentListItem = (props) => {
   const item = props.item;
+  const deleteComment = props.deleteComment
 
   const [editMode, setEditMode] = useState(false);
 
@@ -9,8 +10,8 @@ const CommentListItem = (props) => {
       <div>
         <span>{item.title}</span> 
         <span>{item.comment}</span> 
-        <button onClick={()=>{setEditMode(true)}}>Edit</button>
-        <button>Delete</button>
+        <button onClick={(e)=>{setEditMode(true)}}>Edit</button>
+        <button onClick={(e)=>{deleteComment(item.id)}}>Delete</button>
       </div>
   );
   
@@ -21,7 +22,7 @@ const CommentListItem = (props) => {
         <input value={item.title} />
         <input value={item.comment} />
         <button>Save</button>
-        <button onClick={()=>{setEditMode(false)}}>Cancel </button>
+        <button onClick={()=>{setEditMode(false)}}>Cancel</button>
       </div>
     );
   }
