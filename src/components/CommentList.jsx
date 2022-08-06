@@ -34,6 +34,22 @@ const CommentList = () => {
     setComments(updatedComments);
   };
 
+  const updateItem = (id, newData) => {
+    const updatedComments = comments.map(item => {
+      if (item.id === id) {
+        //editujemo samo sa tim ID
+        const updatedItem = {
+          ...item,
+          ...newData,
+          id: id // za svaki slucaj da neko ne mi u sklopu newdata posalo neki pogresan id
+        }
+        return updatedItem;
+      }
+      return item; // sve ostale koji nisu taj idi ostaju neizmenjeni
+    });
+    setComments(updatedComments);
+  };
+
 
   return (
     <div>
@@ -42,7 +58,12 @@ const CommentList = () => {
         {
           comments.map(item => {
             return (
-              <CommentListItem key={item.id} item={item} deleteComment={deleteItem} />
+              <CommentListItem
+                key={item.id}
+                item={item}
+                deleteComment={deleteItem}
+                updateComment={updateItem}
+              />
             );
           })
         }
