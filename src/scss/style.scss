@@ -14,3 +14,32 @@ body {
   margin: 0px;
   padding: 0px;
 }
+
+
+.comment-list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+
+  padding: 1rem;
+
+  .comment-item {
+    border: 1px solid gray;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+
+    >* {
+      margin-right: 1rem;
+    }
+  }
+}
+
