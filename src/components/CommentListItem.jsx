@@ -31,36 +31,46 @@ const CommentListItem = (props) => {
   }
 
   let jsx = (
-    <div>
-      <span>{item.title}</span>
-      <span>{item.comment}</span>
+    <>
+      <div className="flex-1">
+        <p><b>{item.title}</b></p>
+        <p>{item.comment}</p>
+      </div>
       <button onClick={(e) => { setEditMode(true) }}>Edit</button>
       <button onClick={(e) => { deleteComment(item.id) }}>Delete</button>
-    </div>
+    </>
   );
 
   if (editMode) {
     // ako je u edit mode
     jsx = (
-      <div>
-        <input
-          type="text"
-          name="title"
-          value={state.title}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="comment"
-          value={state.comment}
-          onChange={handleChange}
-        />
-        <button onClick={()=>{
+      <>
+        <div className="flex-1">
+          <div>
+            <input
+              type="text"
+              name="title"
+              value={state.title}
+              onChange={handleChange}
+              placeholder="Title"
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              name="comment"
+              value={state.comment}
+              onChange={handleChange}
+              placeholder="Your comment here"
+            />
+          </div>
+        </div>
+        <button onClick={() => {
           updateComment(item.id, state);
           setEditMode(false);
         }}>Save</button>
         <button onClick={() => { setEditMode(false) }}>Cancel</button>
-      </div>
+      </>
     );
   }
 

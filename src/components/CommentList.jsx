@@ -1,9 +1,23 @@
 import { useState } from "react";
 import CommentListItem from "./CommentListItem";
+import CommentListItemAddForm from "./CommentListItemAddForm";
+
+
+let counter = 0;
+
+const makeNewId = ()=> {
+  // make unique new ID
+  counter++;
+  const id = counter; // new id
+  return id;
+};
+
+
 
 const CommentList = () => {
 
-  const data = [
+  /*
+  const dummy_data = [
     {
       id: 1,
       title: 'A',
@@ -20,8 +34,12 @@ const CommentList = () => {
       comment: 'ccc'
     },
   ];
+  */
 
-  const [comments, setComments] = useState(data);
+  const [comments, setComments] = useState([]);
+
+
+  // CRUD (create read update delete)
 
   const deleteItem = (id) => {
     const updatedComments = comments.filter(item => {
@@ -50,6 +68,15 @@ const CommentList = () => {
     setComments(updatedComments);
   };
 
+  const createItem = (formData)=>{
+    const newComment = {
+      ...formData,
+      id: makeNewId()
+    };
+    const updatedComments = [...comments, newComment];
+    setComments(updatedComments);
+  };
+
 
   return (
     <div>
@@ -67,6 +94,7 @@ const CommentList = () => {
             );
           })
         }
+        <CommentListItemAddForm createComment={createItem} />
       </div>
 
     </div>

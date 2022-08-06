@@ -6,10 +6,12 @@ import CommentList from './CommentList';
 
 const App = () => {
   return (
-    <div className="App">
+    <div className="wrapper">
       App
-      <CommentList/>
-      
+      <div className="universal-okvir">
+        <CommentList />
+      </div>
+
       <AddContactForm3 />
       <AddContactForm2 />
       <AddContactForm />
