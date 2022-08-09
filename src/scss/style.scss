@@ -66,3 +66,30 @@ body {
   }
 }
 
+table.tabelar-form {
+  border-spacing: 0px;
+  border-collapse: collapse;
+  th {
+    border: 1px solid black;
+    font-weight: 600;
+    text-align: center;
+  }
+  td {
+    border: 1px solid black;
+    padding: 0px;
+
+  }
+
+  input {
+    width: 100%;
+    margin: 0px;
+    border-radius: 0px;
+    border-width: 0px;
+
+    height: 2rem;
+    padding: 0px 0.5rem;
+  }
+  input:focus {
+    background-color: rgb(255, 255, 180);
+  }
+}
