@@ -2,7 +2,7 @@ import { useState } from "react";
 import TabelarFormListItem from "./TabelarFormListItem";
 
 
-let counter = 10;
+let counter = 0;
 
 const makeNewId = () => {
   // make unique new ID
@@ -14,20 +14,7 @@ const makeNewId = () => {
 
 const TabelarFormList = () => {
 
-  const [stateArr, setStateArr] = useState([
-    {
-      id: 1,
-      title: 't',
-      price: 150,
-      quantity: 11
-    },
-    {
-      id: 2,
-      title: 't2',
-      price: 280,
-      quantity: 222
-    },
-  ]);
+  const [stateArr, setStateArr] = useState([]);
 
   // CRUD (create read update delete)
 
@@ -50,6 +37,22 @@ const TabelarFormList = () => {
       quantity: ''
     };
     const updatedItems = [...stateArr, newitem];
+    setStateArr(updatedItems);
+  };
+
+  const _handleChangeItem = (id, name, value)=> {
+    const updatedItems = stateArr.map((state)=>{
+      // idemo kroz niz state-ova
+      if (state.id === id) {
+        // trazeni state updateujemo
+        const updatedItem = {
+          ...state,
+          [name]: value
+        };
+        return updatedItem;
+      }
+      return state; // svi ostali ostaju neizmenjeni
+    });
     setStateArr(updatedItems);
   };
 
@@ -80,7 +83,7 @@ const TabelarFormList = () => {
             {
               stateArr.map((item) => {
                 return (
-                  <TabelarFormListItem key={item.id} item={item} deleteItem={deleteItem} />
+                  <TabelarFormListItem key={item.id} item={item} deleteItem={deleteItem} _handleChangeItem={_handleChangeItem} />
                 )
               })
             }
