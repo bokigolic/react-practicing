@@ -41,16 +41,30 @@ const TabelarFormListItem = (props) => {
       <td>
         <input
           type="number"
-          name="price"
-          value={item.price}
+          name="quantity"
+          value={item.quantity}
           onChange={handleChange}
         />
       </td>
       <td>
+        <select
+          name="unit"
+          value={item.unit}
+          onChange={handleChange}
+        >
+          <option value="kom">Komad</option>
+          <option value="kg">kg</option>
+          <option value="l">Litar</option>
+          <option value="m">Metar (dužni)</option>
+          <option value="m2">Metar kvadratni</option>
+          <option value="m3">Metar kubni</option>
+        </select>
+      </td>
+      <td>
         <input
           type="number"
-          name="quantity"
-          value={item.quantity}
+          name="price"
+          value={item.price}
           onChange={handleChange}
         />
       </td>
