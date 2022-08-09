@@ -92,4 +92,8 @@ table.tabelar-form {
   input:focus {
     background-color: rgb(255, 255, 180);
   }
+  input[type="number"] {
+    text-align: right;
+    font-family: monospace; /* monospcae je font gde je svaki character u polju istih dimenzija */
+  }
 }

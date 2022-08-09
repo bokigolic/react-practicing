@@ -33,8 +33,8 @@ const TabelarFormList = () => {
     const newitem = {
       id: makeNewId(),
       title: '',
-      price: '',
-      quantity: ''
+      price: 0,
+      quantity: 0
     };
     const updatedItems = [...stateArr, newitem];
     setStateArr(updatedItems);

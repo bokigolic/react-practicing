@@ -10,7 +10,8 @@ const TabelarFormListItem = (props) => {
   const handleChange = (e) => {
     // NIJE UNIVERZALNI
     const target = e.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
+    // const value = target.type === 'checkbox' ? target.checked : target.value;
+    let value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
     /*
     setState({
@@ -18,6 +19,11 @@ const TabelarFormListItem = (props) => {
       [name]: value
     });
     */
+    // FIX izuzetak za brojcane vrednosti
+    if (name === 'price' || name === 'quantity') {
+      // odredjena polja pretvaramo u integer
+      value = parseInt(value);
+    }
     _handleChangeItem(id, name, value);
   };
 
@@ -34,7 +40,7 @@ const TabelarFormListItem = (props) => {
       </td>
       <td>
         <input
-          type="text"
+          type="number"
           name="price"
           value={item.price}
           onChange={handleChange}
@@ -42,7 +48,7 @@ const TabelarFormListItem = (props) => {
       </td>
       <td>
         <input
-          type="text"
+          type="number"
           name="quantity"
           value={item.quantity}
           onChange={handleChange}
