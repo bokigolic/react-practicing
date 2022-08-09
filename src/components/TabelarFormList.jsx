@@ -18,6 +18,19 @@ const TabelarFormList = () => {
     },
   ]);
 
+    // CRUD (create read update delete)
+
+    const deleteItem = (id) => {
+      const updatedItems = stateArr.filter(item => {
+        if (item.id === id) {
+          // brisemo taj sa takvim IDom
+          return false;
+        }
+        return true; // svi ostali ostaju u nizu
+      });
+      setStateArr(updatedItems);
+    };
+
 
   return (
     <>
@@ -45,7 +58,7 @@ const TabelarFormList = () => {
             {
               stateArr.map((item) => {
                 return (
-                  <TabelarFormListItem key={item.id} item={item} />
+                  <TabelarFormListItem key={item.id} item={item} deleteItem={deleteItem} />
                 )
               })
             }

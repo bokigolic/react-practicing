@@ -2,6 +2,9 @@
 // svaki item od TabelarForm je jeadn red tabele <tr>
 const TabelarFormListItem = (props) => {
   const item = props.item;
+  const id = item.id; // kad je jedna komponenta jedan item onda ona ima svoj ID uvek
+  const deleteItem = props.deleteItem;
+
 
   return (
     <tr>
@@ -27,7 +30,9 @@ const TabelarFormListItem = (props) => {
         />
       </td>
       <td>
-        <button>Delete</button>
+        <button onClick={()=>{
+          deleteItem(id)
+        }}>Delete</button>
       </td>
     </tr>
   );
