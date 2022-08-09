@@ -1,6 +1,17 @@
 import { useState } from "react";
 import TabelarFormListItem from "./TabelarFormListItem";
 
+
+let counter = 10;
+
+const makeNewId = () => {
+  // make unique new ID
+  counter++;
+  const id = counter; // new id
+  return id;
+};
+
+
 const TabelarFormList = () => {
 
   const [stateArr, setStateArr] = useState([
@@ -18,18 +29,29 @@ const TabelarFormList = () => {
     },
   ]);
 
-    // CRUD (create read update delete)
+  // CRUD (create read update delete)
 
-    const deleteItem = (id) => {
-      const updatedItems = stateArr.filter(item => {
-        if (item.id === id) {
-          // brisemo taj sa takvim IDom
-          return false;
-        }
-        return true; // svi ostali ostaju u nizu
-      });
-      setStateArr(updatedItems);
+  const deleteItem = (id) => {
+    const updatedItems = stateArr.filter(item => {
+      if (item.id === id) {
+        // brisemo taj sa takvim IDom
+        return false;
+      }
+      return true; // svi ostali ostaju u nizu
+    });
+    setStateArr(updatedItems);
+  };
+
+  const createItem = () => {
+    const newitem = {
+      id: makeNewId(),
+      title: '',
+      price: '',
+      quantity: ''
     };
+    const updatedItems = [...stateArr, newitem];
+    setStateArr(updatedItems);
+  };
 
 
   return (
@@ -66,7 +88,7 @@ const TabelarFormList = () => {
           </tbody>
         </table>
 
-        <button>Dodaj novi red</button>
+        <button onClick={createItem}>Dodaj novi red</button>
 
 
 
