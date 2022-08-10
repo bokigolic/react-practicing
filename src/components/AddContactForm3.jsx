@@ -1,5 +1,16 @@
 import { useEffect, useState } from "react";
 
+
+// TODO: dovrsiti tafove da svak itag dobije button za delete taga. I da se preventuju duplikati prilikom dodavanja taga.
+
+
+let counter = 0;
+const makeNewId = ()=> {
+  counter++;
+  return counter; // new ID je broj iz countera
+};
+
+
 const AddContactForm3 = () => {
 
   const preset = {
@@ -11,6 +22,8 @@ const AddContactForm3 = () => {
   const [state, setState] = useState(preset);
   const [phoneArr, setPhoneArr] = useState([]); // array of states
   const [newPhone, setNewPhone] = useState('');
+  const [tags, setTags] = useState([]); // array of states
+  const [newTag, setNewTag] = useState('');
   const [selectedArr, setSelectedArr] = useState([]); // array of states
 
   const _handleChangeSelected = (phone, checked) => {
@@ -62,6 +75,11 @@ const AddContactForm3 = () => {
     setNewPhone(newPhoneNumber);
   }
 
+  const handleChangeNewTag = (e) => {
+    const newTag = e.target.value;
+    setNewTag(newTag);
+  }
+
   const handleAddNumber = (e) => {
     if (newPhone !== '') { // prevent adding ampty 
       const newphonePrepared = newPhone.trim(); // uklanja nehoticno unete razmake na pocetku ili kraju teksta
@@ -73,6 +91,27 @@ const AddContactForm3 = () => {
         setPhoneArr([...phoneArr, newphonePrepared]);
         // nakon unosa broja praznimo polje za broj
         setNewPhone('');
+      }
+    }
+  };
+
+  const handleAddTag = (e) => {
+    if (newTag !== '') { // prevent adding ampty 
+      // const newTagObject = newTag.trim(); // uklanja nehoticno unete razmake na pocetku ili kraju teksta
+      const newTagObject = {
+        id: makeNewId(),
+        tagText: newTag.trim()
+      };
+
+      // if (tags.includes(newTagObject)) {
+      if (false) { // TODO kasnije napraviti novi princip trazenja dupliakata
+        // duplicate!!!!
+        // do nothing
+      } else {
+        // upisujemo samo ako nije duplikat
+        setTags([...tags, newTagObject]);
+        // nakon unosa broja praznimo polje za broj
+        setNewTag('');
       }
     }
   };
@@ -130,7 +169,6 @@ const AddContactForm3 = () => {
           );
         })}
       </div>
-
       <div>
         <input
           type="text"
@@ -139,6 +177,26 @@ const AddContactForm3 = () => {
           onChange={handleChangeNewPhone}
         />
         <button type="button" onClick={handleAddNumber}>add number</button>
+      </div>
+
+
+      <h4>Tags</h4>
+      <span>Moćnije rešene nego za telefone. Ne dozvoljava duplikate i može da se brise svaki pojedinačno</span>
+      <div>
+        {tags.map((tag) => {
+          return (
+            <div key={tag.id}>tags: {tag.tagText}</div>
+          );
+        })}
+      </div>
+      <div>
+        <input
+          type="text"
+          name="newtag"
+          value={newTag}
+          onChange={handleChangeNewTag}
+        />
+        <button type="button" onClick={handleAddTag}>add tag</button>
       </div>
 
       <h4>Multiple delete selected</h4>
