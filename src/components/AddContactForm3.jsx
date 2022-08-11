@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 
-// TODO: dovrsiti tafove da svak itag dobije button za delete taga. I da se preventuju duplikati prilikom dodavanja taga.
+// TODO: dovrsiti tagove da svak itag dobije button za delete taga. I da se preventuju duplikati prilikom dodavanja taga.
 
 
 let counter = 0;
@@ -20,10 +20,13 @@ const AddContactForm3 = () => {
   };
 
   const [state, setState] = useState(preset);
+
   const [phoneArr, setPhoneArr] = useState([]); // array of states
   const [newPhone, setNewPhone] = useState('');
+  
   const [tags, setTags] = useState([]); // array of states
   const [newTag, setNewTag] = useState('');
+  
   const [selectedArr, setSelectedArr] = useState([]); // array of states
 
   const _handleChangeSelected = (phone, checked) => {
@@ -96,24 +99,43 @@ const AddContactForm3 = () => {
   };
 
   const handleAddTag = (e) => {
-    if (newTag !== '') { // prevent adding ampty 
-      // const newTagObject = newTag.trim(); // uklanja nehoticno unete razmake na pocetku ili kraju teksta
-      const newTagObject = {
-        id: makeNewId(),
-        tagText: newTag.trim()
-      };
+    let tagTrimmed = newTag.trim(); // uklanja nehoticno unete razmake na pocetku ili kraju teksta
+    if (tagTrimmed !== '') { // prevent adding ampty 
 
+      // KORAK provera da li ima vec unesen takv tag
+      let alreadyExist = false;
+      tags.forEach((item)=>{
+        if (item.tagText === tagTrimmed) {
+          alreadyExist = true;
+        }
+      });
+    
       // if (tags.includes(newTagObject)) {
-      if (false) { // TODO kasnije napraviti novi princip trazenja dupliakata
-        // duplicate!!!!
-        // do nothing
-      } else {
-        // upisujemo samo ako nije duplikat
+        if (alreadyExist) { // TODO kasnije napraviti novi princip trazenja dupliakata
+          // duplicate!!!!
+          // do nothing
+        } else {
+          // upisujemo samo ako nije duplikat
+          const newTagObject = {
+            id: makeNewId(),
+            tagText: tagTrimmed
+          };
+          
         setTags([...tags, newTagObject]);
         // nakon unosa broja praznimo polje za broj
         setNewTag('');
       }
     }
+  };
+
+  const deleteTag = (id)=> {
+    const updatedItems = tags.filter((item)=>{
+      if (id === item.id) {
+        return false; // False znaci da filter petlje njega brize iz arreja
+      }
+      return true; // true svi ostalo ostaju u nizu
+    });
+    setTags(updatedItems)
   };
 
   const handleSaveContact = (e) => {
@@ -185,7 +207,7 @@ const AddContactForm3 = () => {
       <div>
         {tags.map((tag) => {
           return (
-            <div key={tag.id}>tags: {tag.tagText}</div>
+            <div key={tag.id}>tags: {tag.tagText}<button onClick={(e)=>{deleteTag(tag.id)}}>&times;</button></div>
           );
         })}
       </div>
