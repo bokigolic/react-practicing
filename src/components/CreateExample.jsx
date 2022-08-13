@@ -2,7 +2,7 @@ import { useState } from "react";
 
 
 let counter = 0;
-const makeNewId = ()=>{
+const makeNewId = () => {
   counter++;
   return counter;
 };
@@ -29,7 +29,7 @@ const CreateExample = () => {
   // -------------------------------
   // OVO ISPOD JE ZA FORMU
 
-  const [formState, setFormState] = useState({...preset});
+  const [formState, setFormState] = useState({ ...preset });
 
   const handleChange = (e) => {
     // univerzalni handleChange za sve forme, radi i za checboxove
@@ -43,24 +43,35 @@ const CreateExample = () => {
   }
 
   const [todo, setTodo] = useState([]); // LISTA TODOS
-  
+
   // -------------------------------------
   // CRUD
 
-  const createTodo = () =>{
+  const createTodo = () => {
     const newItem = {
-      ...formState, 
+      ...formState,
       id: makeNewId()
     }
     const uppdatedTodo = [...todo, newItem];
     setTodo(uppdatedTodo);
     // nakon dodavanja u listu onog sto smo ukucal iu formu, briemo formu
-    setFormState({...preset});
+    setFormState({ ...preset });
 
   }
 
+  const deleteItem = (idZaBrisanje) => {
+    const updatedTodo = todo.filter((x) => {
+      if (x.id === idZaBrisanje) {
+        return false
+      }
+      return true
+    });
+    setTodo(updatedTodo);
+  };
 
-  
+
+
+
   return (
     <div>
       <h1>Create example</h1>
@@ -72,7 +83,11 @@ const CreateExample = () => {
           porukaCompleted = '(COMPLETED)'
         }
         return (
-          <div key={x.id}>{x.task} {porukaCompleted}</div>
+          <div key={x.id}>{x.task} {porukaCompleted}
+            <button onClick={()=>{
+              deleteItem(x.id)
+            }}>Delete</button>
+          </div>
         )
       })}
 
