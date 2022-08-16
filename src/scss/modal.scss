@@ -1,16 +1,17 @@
 .modal-overlay {
-  display: none;
-
   z-index: 99;
   position: fixed;
-  top: 0px;
+  /* top: 0px; */
   bottom: 0px;
   left: 0px;
   right: 0px;
-  background-color: aqua;
-  background-color: rgba(0,0,0,0.5); 
+  height: 0vh;
+  /* background-color: aqua; */
+  /* background-color: rgba(0,0,0,0.5); */
+  background-color: transparent;
+  transition: all 0s linear;
 
-  /* display: flex; */
+  display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: center;
@@ -18,15 +19,27 @@
 
   .modal-panel {
     position: relative; /* kako bi on bio koordinatni sitem za childrene koji su position:absolute */
-    width: 400px;
+    position: absolute;
+    bottom: -300px;
+    left: 0px;
+    right: 0px;
+    width: 480px;
     height: 300px;
     background-color: white;
     border-radius: 6px;
     margin: auto;
+    transition: all 0.3s ease;
 
-    .modal-close{
+    @media screen and (max-width: 640px) {
+      .modal-panel {
+        /* margin-right: 10px; */
+        width: 90%;
+      }
+    }
+
+    .modal-close {
       position: absolute;
-      top:10px;
+      top: 10px;
       right: 10px;
 
       width: 30px;
@@ -40,7 +53,7 @@
       cursor: pointer;
     }
 
-    .modal-content{
+    .modal-content {
       outline: 1px dashed red;
       padding: 30px;
     }
@@ -48,5 +61,21 @@
 }
 
 .modal-opened .modal-overlay {
-  display: flex;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: height 0s linear, background-color 0.3s ease;
+
+  .modal-panel {
+    bottom: 200px;
+    height: auto;
+    min-height: 480px;
+    transition: all 0.3s ease, width 0s linear;
+  }
+  @media screen and (max-width: 640px) {
+    .modal-panel {
+      /* margin-right: 10px; */
+      bottom: -10px;
+      width: 90%;
+    }
+  }
 }
