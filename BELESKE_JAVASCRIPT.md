@@ -35,4 +35,20 @@ niz.forEach((item)=>{
 
 
 
-##
+## Objekti
+
+let id =  2
+let kolicina = 15
+
+const stan = {
+  id: 1
+  kupatilo: '',
+  kuhinja: ''
+  soba: ''
+};
+
+stan.kupatilo
+stan.kuhnja
+stan.sobe
+
+

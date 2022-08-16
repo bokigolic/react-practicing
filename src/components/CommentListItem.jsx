@@ -23,10 +23,12 @@ const CommentListItem = (props) => {
     // univerzalni handleChange za sve forme, radi i za checboxove
     const target = e.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
+    const onoStoJeUkucanoUPolje = value;
     const name = target.name;
     setState({
       ...state,
-      [name]: value
+      // [name]: value,
+      [name]: onoStoJeUkucanoUPolje,
     });
   }
 

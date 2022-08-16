@@ -77,19 +77,24 @@ const CreateExample = () => {
       <h1>Create example</h1>
 
       <h2>To Do List</h2>
-      {todo.map((x) => {
+      {
+      todo.map((x, index) => {
+        // each
+        let id = x.id;
+        let ovoJeIDOdOveJedneKartice = x.id;
         let porukaCompleted = '';
         if (x.completed) {
           porukaCompleted = '(COMPLETED)'
         }
         return (
           <div key={x.id}>{x.task} {porukaCompleted}
-            <button onClick={()=>{
+            <button onClick={() => {
               deleteItem(x.id)
             }}>Delete</button>
           </div>
         )
-      })}
+      })
+      }
 
       <form>
         <h2>Add new todo</h2>
