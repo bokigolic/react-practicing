@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import CRUDExampleModalEditForm from "./CRUDExampleModalEditForm";
 
 
 let counter = 0;
@@ -62,7 +63,56 @@ const CRUDExampleSaModalom = () => {
   };
 
 
-  const handleTestModal = (e)=> {
+  const editItem = (editingItem) => {
+    // edit posredstvom modala
+    // u ovom primeru mu saljemo ceo x (i tu je sve i id i task i completed)
+
+    // KORAK PRIPREMA CALLBACKA kojeg ce modal pozvati kad obavi edit
+    const cbSaveEdited = (editedItem)=>{
+      console.log('modal pozvao callback i vratio izmene', editedItem);
+      // KORAK 3 sad to sto je modal vratio moramo da upisemo  ustate ove komponente
+
+      // UPDATE operacija
+      const updatedTodo = todo.map((x)=>{
+        if (x.id === editedItem.id){
+          // to je taj kojeg treba izmeniti
+          const updatedItem = {
+            ...x, 
+            ...editedItem
+          };
+          return updatedItem;
+        };
+        // svi ostali ostaju neizmenjeni
+        return x;
+      });
+      setTodo(updatedTodo)
+    };
+
+    // KORAK 2 otvaramo modal sa edit formom
+    dispatch({
+      type: 'MODAL_OPEN',
+      payload: (
+        <CRUDExampleModalEditForm editingItem={editingItem} cbSaveEdited={cbSaveEdited} />
+      )
+    });
+  };
+
+  const editItemById = (idZaEdit) => {
+    // TODO ovo cemo kasnije
+    // edit posredstvom modala
+    // KORAK 1) selectovati taj item sa tim IDom
+    // READ operacija
+    let tajItem = false;
+    let selected = [];
+    todo.forEach((x) => {
+      if (x.id === idZaEdit) {
+
+      };
+    })
+  };
+
+
+  const handleTestModal = (e) => {
     dispatch({
       type: 'MODAL_OPEN',
       payload: (
@@ -80,22 +130,25 @@ const CRUDExampleSaModalom = () => {
 
       <h2>To Do List</h2>
       {
-      todo.map((x, index) => {
-        // each
-        let id = x.id;
-        let ovoJeIDOdOveJedneKartice = x.id;
-        let porukaCompleted = '';
-        if (x.completed) {
-          porukaCompleted = '(COMPLETED)'
-        }
-        return (
-          <div key={x.id}>{x.task} {porukaCompleted}
-            <button onClick={() => {
-              deleteItem(x.id)
-            }}>Delete</button>
-          </div>
-        )
-      })
+        todo.map((x, index) => {
+          // each
+          let id = x.id;
+          let ovoJeIDOdOveJedneKartice = x.id;
+          let porukaCompleted = '';
+          if (x.completed) {
+            porukaCompleted = '(COMPLETED)'
+          }
+          return (
+            <div key={x.id}>{x.task} {porukaCompleted}
+              <button onClick={() => {
+                editItem(x)
+              }}>Edit</button>
+              <button onClick={() => {
+                deleteItem(x.id)
+              }}>Delete</button>
+            </div>
+          )
+        })
       }
 
       <form>
