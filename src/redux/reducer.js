@@ -1,12 +1,22 @@
 const initialState = {
-  nesto: 'bla bla'
+  nesto: 'bla bla',
+  modalComponent: null
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
 
-    case 'NEKI_ACTION':
-      return state;
+    case 'MODAL_OPEN':
+      return {
+        ...state,
+        modalComponent: action.payload
+      };
+
+    case 'MODAL_CLOSE':
+      return {
+        ...state,
+        modalComponent: null
+      };
 
 
     default:

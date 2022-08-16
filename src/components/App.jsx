@@ -7,11 +7,15 @@ import CommentList from './CommentList';
 import CreateExample from './CreateExample';
 import Modal from './Modal';
 import TabelarFormList from './TabelarFormList';
+import CRUDExampleSaModalom from './CRUDExampleSaModalom';
 
 const App = () => {
   return (
     <>
       <div className="wrapper">
+        <div className="universal-okvir">
+          <CRUDExampleSaModalom />
+        </div>
         <div className="universal-okvir">
           <CreateExample />
         </div>

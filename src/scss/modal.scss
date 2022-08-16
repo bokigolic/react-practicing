@@ -1,4 +1,6 @@
 .modal-overlay {
+  display: none;
+
   z-index: 99;
   position: fixed;
   top: 0px;
@@ -8,7 +10,7 @@
   background-color: aqua;
   background-color: rgba(0,0,0,0.5); 
 
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: center;
@@ -43,4 +45,8 @@
       padding: 30px;
     }
   }
+}
+
+.modal-opened .modal-overlay {
+  display: flex;
 }
