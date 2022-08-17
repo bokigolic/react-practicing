@@ -7,9 +7,9 @@ const NizKockica = (props) => {
     <div className="niz-kockica">
 
       {
-        niz.map((broj)=>{
+        niz.map((broj, index)=>{
           return (
-            <KockicaGlupa key={broj} broj={broj} />
+            <KockicaGlupa key={index} broj={broj} />
           )
         })
       }
