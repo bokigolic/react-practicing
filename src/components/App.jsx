@@ -8,11 +8,15 @@ import CreateExample from './CreateExample';
 import Modal from './Modal';
 import TabelarFormList from './TabelarFormList';
 import CRUDExampleSaModalom from './CRUDExampleSaModalom';
+import VezbeSaKockicama from './VezbeSaKockicama';
 
 const App = () => {
   return (
     <>
       <div className="wrapper">
+        <div className="universal-okvir">
+          <VezbeSaKockicama />
+        </div>
         <div className="universal-okvir">
           <CRUDExampleSaModalom />
         </div>

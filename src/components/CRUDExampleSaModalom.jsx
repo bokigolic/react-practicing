@@ -49,7 +49,6 @@ const CRUDExampleSaModalom = () => {
     setTodo(uppdatedTodo);
     // nakon dodavanja u listu onog sto smo ukucal iu formu, briemo formu
     setFormState({ ...preset });
-
   }
 
   const deleteItem = (idZaBrisanje) => {
@@ -85,7 +84,7 @@ const CRUDExampleSaModalom = () => {
         // svi ostali ostaju neizmenjeni
         return x;
       });
-      setTodo(updatedTodo)
+      setTodo(updatedTodo);
     };
 
     // KORAK 2 otvaramo modal sa edit formom
