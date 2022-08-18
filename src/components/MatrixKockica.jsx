@@ -16,7 +16,13 @@ const MatrixKockica = (props) => {
   let jsxNizRedova = [];
   for (let ii = 1; ii <= kolikoRedova; ii++) {
     // za svaki red jedan ciklus
-    jsxNizRedova.push(<NizKockica key={ii} niz={nizZaJedanRed} pametne={props.pametne} />);
+    jsxNizRedova.push(<NizKockica
+      key={ii}
+      niz={nizZaJedanRed}
+      pametne={props.pametne}
+      bojanka={props.bojanka}
+      bojankaColor={props.bojankaColor}
+    />);
   }
   console.log('test broj redova', jsxNizRedova.length);
 

@@ -1,5 +1,6 @@
 import KockicaGlupa from "./KockicaGlupa";
 import KockicaPametna from "./KockicaPametna";
+import KockicaZaBojanku from "./KockicaZaBojanku";
 
 const NizKockica = (props) => {
   const niz = props.niz;
@@ -8,12 +9,17 @@ const NizKockica = (props) => {
     <div className="niz-kockica">
 
       {
-        niz.map((broj, index)=>{
+        niz.map((broj, index) => {
           if (props.pametne) {
             // pametne
             return (
               <KockicaPametna key={index} broj={broj} />
             )
+          } else if (props.bojanka) {
+            // kockice za bojenje
+            return (
+              <KockicaZaBojanku key={index} bojankaColor={props.bojankaColor}/>
+            );
           } else {
             // glupe
             return (

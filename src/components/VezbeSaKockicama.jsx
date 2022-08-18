@@ -8,6 +8,7 @@ import NizKockica from "./NizKockica";
 const VezbeSaKockicama = () => {
   return (
     <div>
+      <h1>Vežbe sa kockicama</h1>
       <Kockica />
       <Kockica />
       <Kockica />

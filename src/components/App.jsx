@@ -9,11 +9,15 @@ import Modal from './Modal';
 import TabelarFormList from './TabelarFormList';
 import CRUDExampleSaModalom from './CRUDExampleSaModalom';
 import VezbeSaKockicama from './VezbeSaKockicama';
+import Bojanka from './Bojanka';
 
 const App = () => {
   return (
     <>
       <div className="wrapper">
+      <div className="universal-okvir">
+          <Bojanka />
+        </div>
         <div className="universal-okvir">
           <VezbeSaKockicama />
         </div>
