@@ -101,7 +101,7 @@ const CreateExample = () => {
         <input
           type="checkbox"
           name="completed"
-          value={formState.completed}
+          checked={formState.completed}
           onChange={handleChange}
         />
         <label>Task</label>
