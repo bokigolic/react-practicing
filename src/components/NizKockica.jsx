@@ -1,4 +1,5 @@
 import KockicaGlupa from "./KockicaGlupa";
+import KockicaPametna from "./KockicaPametna";
 
 const NizKockica = (props) => {
   const niz = props.niz;
@@ -8,9 +9,17 @@ const NizKockica = (props) => {
 
       {
         niz.map((broj, index)=>{
-          return (
-            <KockicaGlupa key={index} broj={broj} />
-          )
+          if (props.pametne) {
+            // pametne
+            return (
+              <KockicaPametna key={index} broj={broj} />
+            )
+          } else {
+            // glupe
+            return (
+              <KockicaGlupa key={index} broj={broj} />
+            )
+          }
         })
       }
 
@@ -19,3 +28,13 @@ const NizKockica = (props) => {
 };
 
 export default NizKockica;
+
+/*
+      {
+        niz.map((broj, index)=>{
+          return (
+            <KockicaGlupa key={index} broj={broj} />
+          )
+        })
+      }
+*/

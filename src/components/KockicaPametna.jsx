@@ -4,8 +4,12 @@ const KockicaPametna = () => {
 
   const [counter, setCounter] = useState(0);
 
-  const handleClick = () => {
+  const handleClickPlus = () => {
     setCounter(counter + 1);
+  }
+
+  const handleClickMinus = () => {
+    setCounter(counter - 1);
   }
 
 
@@ -32,9 +36,10 @@ const KockicaPametna = () => {
   return (
     <div
       className={"pametna kockica " + color}
-      onClick={handleClick}
     >
       {counter}
+      <button onClick={handleClickMinus}>-</button>
+      <button onClick={handleClickPlus}>+</button>
     </div>
   )
 };

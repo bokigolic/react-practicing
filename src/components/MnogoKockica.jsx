@@ -19,7 +19,7 @@ const MnogoKockica = (props) => {
   return (
     <div className='mnogo-kockice'>
 
-      <NizKockica niz={niz} />
+      <NizKockica niz={niz} pametne={props.pametne} />
 
     </div>
   )
