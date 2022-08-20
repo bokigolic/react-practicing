@@ -9,9 +9,12 @@ const AnalogClock = () => {
 
   const tick = () => {
     // jedan otkucaj, treba neko da ga pozove svakih jednu sekundu
-    console.log('tick');
+    // console.log('tick');
     // setSeconds(seconds + 1);
     setSeconds((oldState) => {
+      if (oldState === 59) {
+        return 0;
+      }
       return oldState + 1;
     });
   }
@@ -21,9 +24,7 @@ const AnalogClock = () => {
     if (intervalId) {
       // vec otkucava interval
     } else {
-      intervalId = setInterval(() => {
-        tick();
-      }, 1000);
+      intervalId = setInterval(tick, 1000);
     }
   }, [tick, intervalId]);
 

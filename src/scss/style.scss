@@ -184,7 +184,8 @@ table.tabelar-form {
       left:49px;
       height: 100px;
       width: 2px;
-      outline:1px dashed blue ;
+      transition: all 0s linear;
+      /* outline:1px dashed blue ; */
       
       .kazaljka {
         height: 50px;
