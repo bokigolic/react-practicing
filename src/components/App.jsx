@@ -19,7 +19,6 @@ const App = () => {
 
         <div className="universal-okvir">
           <AnalogClock />
-          <AnalogClock />
         </div>
         <div className="universal-okvir">
           <Bojanka kolikoRedova={4} kolikoKolona={4} />
