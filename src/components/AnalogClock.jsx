@@ -31,9 +31,26 @@ const AnalogClock = () => {
   // const ugao = (seconds / 60) * 360;
   const ugao = parseInt((seconds / 60) * 360);
 
+  let sezdesetCrtica = [];
+  for (let i = 1; i <= 60; i++) {
+    let ugao = (i / 60) * 360;
+    sezdesetCrtica.push((
+      <div
+        key={i}
+        className="nosac-kazaljke"
+        style={{
+          transform: 'rotate(' + ugao + 'deg)'
+        }}
+      >
+        <div className="crtica"></div>
+      </div>
+    ));
+  }
+
   return (
     <div className="analog-clock">
       <div className="krug">
+        {sezdesetCrtica}
         <div
           className="nosac-kazaljke"
           style={{
