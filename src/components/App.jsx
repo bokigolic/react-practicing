@@ -10,12 +10,18 @@ import TabelarFormList from './TabelarFormList';
 import CRUDExampleSaModalom from './CRUDExampleSaModalom';
 import VezbeSaKockicama from './VezbeSaKockicama';
 import Bojanka from './Bojanka';
+import AnalogClock from './AnalogClock';
 
 const App = () => {
   return (
     <>
       <div className="wrapper">
-      <div className="universal-okvir">
+
+        <div className="universal-okvir">
+          <AnalogClock />
+          <AnalogClock />
+        </div>
+        <div className="universal-okvir">
           <Bojanka kolikoRedova={4} kolikoKolona={4} />
           <Bojanka kolikoRedova={10} kolikoKolona={10} />
         </div>

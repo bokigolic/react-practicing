@@ -98,6 +98,8 @@ table.tabelar-form {
   }
 }
 
+/* kockice */
+
 .kockica {
   position: relative;
   display: inline-block;
@@ -164,4 +166,35 @@ table.tabelar-form {
 .kockica.red-hot {
   background-color: rgb(195, 78, 78);
   color: white;
+}
+
+/* analog clock */
+
+.analog-clock {
+  .krug {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background-color: rgb(115, 112, 112);
+    border-radius: 50%;
+
+    .nosac-kazaljke {
+      position:absolute;
+      top:0px;
+      left:49px;
+      height: 100px;
+      width: 2px;
+      outline:1px dashed blue ;
+      
+      .kazaljka {
+        height: 50px;
+        width: 2px;
+        background-color: yellow;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+      }
+    }
+   
+  }
 }

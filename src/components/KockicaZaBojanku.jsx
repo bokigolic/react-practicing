@@ -25,10 +25,12 @@ const KockicaZaBojanku = (props) => {
   };
 
 
+  // onClick={handleClick}
+
   return (
     <div
       className={"kockica-bojanka kockica " + color}
-      onClick={handleClick}
+      onMouseDown={handleClick}
     >
 
     </div>
