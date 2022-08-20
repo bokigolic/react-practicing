@@ -1,7 +1,7 @@
 import { useState } from "react";
 import MatrixKockica from "./MatrixKockica";
 
-const Bojanka = () => {
+const Bojanka = (props) => {
 
   const [color, setColor] = useState('blue');
 
@@ -26,8 +26,8 @@ const Bojanka = () => {
 
       <h4>Crtaj i boji</h4>
       <MatrixKockica
-        kolikoRedova={10}
-        kolikoKolona={10}
+        kolikoRedova={props.kolikoRedova}
+        kolikoKolona={props.kolikoKolona}
         saBrojem={5}
         bojanka
         bojankaColor={color}

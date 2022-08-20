@@ -16,7 +16,8 @@ const App = () => {
     <>
       <div className="wrapper">
       <div className="universal-okvir">
-          <Bojanka />
+          <Bojanka kolikoRedova={4} kolikoKolona={4} />
+          <Bojanka kolikoRedova={10} kolikoKolona={10} />
         </div>
         <div className="universal-okvir">
           <VezbeSaKockicama />
