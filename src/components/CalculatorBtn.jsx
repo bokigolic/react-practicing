@@ -1,6 +1,15 @@
 const CalculatorBtn = (props) => {
+
+
   return (
-    <div className="calculator-taster">{props.title}</div>
+    <div
+      className="calculator-taster"
+      onClick={(e) => {
+        props.click(props.id)
+      }}
+    >
+      {props.title}
+    </div>
   )
 };
 
