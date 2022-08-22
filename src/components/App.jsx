@@ -12,16 +12,17 @@ import VezbeSaKockicama from './VezbeSaKockicama';
 import Bojanka from './Bojanka';
 import AnalogClock from './AnalogClock';
 import AnalogClock2 from './AnalogClock2';
+import Calculator from './Calculator';
 
 const App = () => {
   return (
     <>
       <div className="wrapper">
 
-
-
-
-
+        <div className="universal-okvir">
+          <Calculator />
+          <Calculator />
+        </div>
         <div className="universal-okvir">
           <AnalogClock2 />
           <AnalogClock />

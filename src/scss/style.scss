@@ -215,3 +215,48 @@ table.tabelar-form {
     }
   }
 }
+
+/* Calculator  */
+
+.calculator {
+  background-color: gray;
+  padding-top: 2px;
+  padding-left: 2px;
+  max-width: 170px;
+
+  .calculator-ekran {
+    width: 166px;
+    height: 40px;
+    background-color: silver;
+    margin-bottom: 2px;
+    padding: 0px 5px; 
+    font-family: monospace;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 40px;
+    text-align: right;
+
+  }
+  .calculator-tastatura {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: stretch;
+
+    .calculator-taster {
+      width: 40px;
+      height: 40px;
+      background-color: white;
+      margin-bottom: 2px;
+      margin-right: 2px;
+      text-align: center;
+
+      /* za centriranje po vidini flex */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
