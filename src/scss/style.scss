@@ -179,14 +179,14 @@ table.tabelar-form {
     border-radius: 50%;
 
     .nosac-kazaljke {
-      position:absolute;
-      top:0px;
-      left:49px;
+      position: absolute;
+      top: 0px;
+      left: 49px;
       height: 100px;
       width: 2px;
       transition: all 0s linear;
       /* outline:1px dashed blue ; */
-      
+
       .kazaljka {
         height: 50px;
         width: 2px;
@@ -195,8 +195,16 @@ table.tabelar-form {
         top: 0px;
         left: 0px;
       }
+      .kazaljka-minutara {
+        height: 40px;
+        width: 4px;
+        background-color: rgb(255, 102, 0);
+        position: absolute;
+        top: 10px;
+        left: -1px;
+      }
 
-      .crtica{
+      .crtica {
         height: 5px;
         width: 2px;
         background-color: rgb(93, 191, 68);
@@ -205,6 +213,5 @@ table.tabelar-form {
         left: 0px;
       }
     }
-   
   }
 }

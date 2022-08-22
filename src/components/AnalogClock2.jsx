@@ -1,42 +1,57 @@
 import { useEffect, useState } from "react";
 
 
-let intervalId = false;
+let intervalId2 = false;
 
-const AnalogClock = () => {
+const AnalogClock2 = () => {
 
-  const [seconds, setSeconds] = useState(0);
+  // const [seconds, setSeconds] = useState(0);
+  const [time, setTime] = useState({
+    seconds: 0,
+    minutes: 0
+  });
 
   const tick = () => {
     // jedan otkucaj, treba neko da ga pozove svakih jednu sekundu
     // console.log('tick');
     // setSeconds(seconds + 1);
-    setSeconds((oldState) => {
-      if (oldState === 59) {
-        return 0;
+    setTime((oldState) => {
+      if (oldState.seconds === 59) {
+        return {
+          seconds: 0,
+          minutes: oldState.minutes + 1
+        };
       }
-      return oldState + 1;
+      // return oldState + 1;
+      return {
+        ...oldState, // minutes se ne menjaju
+        seconds: oldState.seconds + 1
+      };
     });
   }
 
+  const seconds = time.seconds;
+  const minutes = time.minutes;
+
   useEffect(() => {
     // ovo ce biti pozvano samo jednog kad se komponenta pojavi na ekranu
-    if (intervalId) {
+    if (intervalId2) {
       // vec otkucava interval
     } else {
-      intervalId = setInterval(tick, 1000);
+      intervalId2 = setInterval(tick, 1000);
     }
     return () => {
       /*
       // ovo ce biti pozvano na component unmount, kad se komponenta brise sa ekrana
-      console.log('brisemo interval', intervalId);
-      clearInterval(intervalId);
+      console.log('brisemo interval', intervalId2);
+      clearInterval(intervalId2);
       */
     };
-  }, [tick, intervalId]);
+  }, [tick, intervalId2]);
 
   // const ugao = (seconds / 60) * 360;
-  const ugao = parseInt((seconds / 60) * 360);
+  const ugao = parseInt((seconds / 60) * 360); // ugao za sekundu
+  const ugaoZaMinut = parseInt((minutes / 60) * 360);
 
   let sezdesetCrtica = [];
   for (let i = 1; i <= 60; i++) {
@@ -54,14 +69,27 @@ const AnalogClock = () => {
     ));
   }
 
-  const handleReset = ()=>{
-    setSeconds(0)
-  }
+  const handleReset = () => {
+    setTime({
+      seconds: 0,
+      minutes: 0
+    });
+  };
 
   return (
     <div className="analog-clock">
       <div className="krug">
         {sezdesetCrtica}
+
+        <div
+          className="nosac-kazaljke"
+          style={{
+            transform: 'rotate(' + ugaoZaMinut + 'deg)'
+          }}
+        >
+          <div className="kazaljka-minutara"></div>
+        </div>
+
         <div
           className="nosac-kazaljke"
           style={{
@@ -70,6 +98,7 @@ const AnalogClock = () => {
         >
           <div className="kazaljka"></div>
         </div>
+
       </div>
 
       <button type="button" onClick={handleReset}>Reset</button>
@@ -77,4 +106,4 @@ const AnalogClock = () => {
   )
 };
 
-export default AnalogClock;
+export default AnalogClock2;
