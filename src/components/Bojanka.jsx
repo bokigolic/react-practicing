@@ -29,7 +29,7 @@ const Bojanka = (props) => {
         kolikoRedova={props.kolikoRedova}
         kolikoKolona={props.kolikoKolona}
         saBrojem={5}
-        bojanka
+        tip="BOCKALICA"
         bojankaColor={color}
       />
 

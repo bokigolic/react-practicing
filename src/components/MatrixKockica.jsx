@@ -19,8 +19,7 @@ const MatrixKockica = (props) => {
     jsxNizRedova.push(<NizKockica
       key={ii}
       niz={nizZaJedanRed}
-      pametne={props.pametne}
-      bojanka={props.bojanka}
+      tip={props.tip}
       bojankaColor={props.bojankaColor}
     />);
   }

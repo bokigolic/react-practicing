@@ -10,12 +10,12 @@ const NizKockica = (props) => {
 
       {
         niz.map((broj, index) => {
-          if (props.pametne) {
+          if (props.tip === 'PAMETNA') {
             // pametne
             return (
               <KockicaPametna key={index} broj={broj} />
             )
-          } else if (props.bojanka) {
+          } else if (props.tip === 'BOCKALICA') {
             // kockice za bojenje
             return (
               <KockicaZaBojanku key={index} bojankaColor={props.bojankaColor}/>
