@@ -39,17 +39,27 @@ const daLiJePao = (nizOcena) => {
 const SkolskiDnevnik = () => {
 
   const initialOcene = {
-    biologija: [3],
-    matematika: [2],
-    srpski: [4, 4, 2, 1],
-    istorija: [1],
-    geografija: [2, 4]
+    biologija: [],
+    matematika: [],
+    srpski: [],
+    istorija: [],
+    geografija: []
   };
 
   // ocene.matematika // Dot notation
   // ocene['matematika'] // Brackets notation
 
   const [ocene, setOcene] = useState(initialOcene);
+
+
+  const dajOcenu = (predmet, ocena) => {
+    console.log("Daj ocenu: ", predmet, ocena);
+    const updatedOcene = {
+      ...ocene,
+      [predmet]: [...ocene[predmet], ocena]
+    };
+    setOcene(updatedOcene);
+  };
 
 
   let prosecneOceneIzSvihPredmeta = [];
@@ -75,15 +85,15 @@ const SkolskiDnevnik = () => {
           const oceneZaIspis = oceneIzTogPredmeta.join(', ');
           const prosecnaOcena = izracunajProsecnuOcenu(oceneIzTogPredmeta);
           return (
-            <div>
+            <div key={predmet}>
               <h4>{predmet}</h4>
               <p>Ocene: {oceneZaIspis} - prosečna: {prosecnaOcena}</p>
               <div>
-                Daj ocenu: <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>4</button>
-                <button>5</button>
+                Daj ocenu: <button onClick={() => { dajOcenu(predmet, 1) }}>1</button>
+                <button onClick={() => { dajOcenu(predmet, 2) }}>2</button>
+                <button onClick={() => { dajOcenu(predmet, 3) }}>3</button>
+                <button onClick={() => { dajOcenu(predmet, 4) }}>4</button>
+                <button onClick={() => { dajOcenu(predmet, 5) }}>5</button>
               </div>
             </div>
           )

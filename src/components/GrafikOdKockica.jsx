@@ -2,9 +2,9 @@ import MnogoKockica from "./MnogoKockica";
 
 const GrafikOdKockica = (props) => {
 
-  let jsxNiz = props.niz.map((broj) => {
+  let jsxNiz = props.niz.map((broj, index) => {
     return (
-      <MnogoKockica koliko={broj} saBrojem={broj} />
+      <MnogoKockica key={index} koliko={broj} saBrojem={broj} />
     );
   });
 
