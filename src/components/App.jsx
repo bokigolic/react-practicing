@@ -13,11 +13,16 @@ import Bojanka from './Bojanka';
 import AnalogClock from './AnalogClock';
 import AnalogClock2 from './AnalogClock2';
 import Calculator from './Calculator';
+import GrafikOdKockica from './GrafikOdKockica';
 
 const App = () => {
   return (
     <>
       <div className="wrapper">
+        <div className="universal-okvir">
+          <GrafikOdKockica niz={[1,5,8,2,6,4,9]} />
+        </div>
+
 
         <div className="universal-okvir">
           <Calculator />
