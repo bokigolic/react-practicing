@@ -286,14 +286,21 @@ table.tabelar-form {
   border-bottom: 1px solid red;
   border-left: 1px solid red;
 
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+  flex-wrap: nowrap;
+
   .jedan-predmet {
+    position: relative;
+    margin-right: 20px;
+
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    align-items: flex-end; 
-
-    
-
+    align-items: flex-end;
+    flex-wrap: nowrap;
 
     .jedna-ocjena {
       width: 10px;
@@ -307,6 +314,20 @@ table.tabelar-form {
       font-weight: 600;
       line-height: 9px;
       text-align: center;
+    }
+
+    .prosjek-predmeta{
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+      right: 0px;
+      background-color: rgba(216, 187, 132, 0.4);
+    }
+
+    .predmet-naslov{
+      position: absolute;
+      bottom: -25px;
+      left:0px;
     }
   }
 
