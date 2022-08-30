@@ -48,9 +48,16 @@ const SkolskiDnevnik = () => {
 
   // ocene.matematika // Dot notation
   // ocene['matematika'] // Brackets notation
+  // ocene[predmet] // gde je predmet promenjiva kojia sadrzi 'matematika'
 
   const [ocene, setOcene] = useState(initialOcene);
+  const [zakljuceno, setZakljuceno] = useState(false);
 
+  const handlerZakljuci = (e) => {
+    // za oceak sam oneka upise zakljuceno=true
+    setZakljuceno(true)
+    // a onda cemo napraviti da moraju da budu i neki preduslovi za zakljucenje...
+  }
 
   const dajOcenu = (predmet, ocena) => {
     console.log("Daj ocenu: ", predmet, ocena);
@@ -61,9 +68,9 @@ const SkolskiDnevnik = () => {
     setOcene(updatedOcene);
   };
 
-
   let prosecneOceneIzSvihPredmeta = [];
-  Object.keys(ocene).forEach((predmet) => {
+  let spisakPredmeta = Object.keys(ocene);
+  spisakPredmeta.forEach((predmet) => {
     const oceneIzTogPredmeta = ocene[predmet];
     const prosecnaOcena = izracunajProsecnuOcenu(oceneIzTogPredmeta);
     prosecneOceneIzSvihPredmeta.push(prosecnaOcena);
@@ -71,9 +78,8 @@ const SkolskiDnevnik = () => {
 
   const glavnaProsecnaOcena = izracunajProsecnuOcenu(prosecneOceneIzSvihPredmeta)
 
-
-
   let pao = daLiJePao(prosecneOceneIzSvihPredmeta);
+
 
   return (
     <div className="skolski-dnevnik">
@@ -110,6 +116,15 @@ const SkolskiDnevnik = () => {
           <div>Prolazna ocena :) Cestitamo!</div>
         )
       }
+
+      {
+        zakljuceno ? (
+          <div> Zakljuceno</div>
+        ) : (
+          <button onClick={handlerZakljuci}>Zakljuci</button>
+        )
+      }
+
     </div>
 
   )

@@ -52,3 +52,24 @@ stan.kuhnja
 stan.sobe
 
 
+## for i forEach petlja
+
+  for (let index = 0; index < rec.length; index++) {
+    const slovo = rec[index];
+    console.log('slovo je:', slovo)
+  }
+
+  for (let index = 0; index < 100; index++) {
+    console.log('iteracije je:', index)
+  }
+
+  let niz = [9,8,7,6,5]
+  let index = 0
+  for (let item of niz) {
+    index++
+    console.log(item)
+  }
+
+  niz.forEach((item, index)=>{})
+
+  
