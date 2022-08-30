@@ -283,8 +283,10 @@ table.tabelar-form {
 
 
 .grafik-ocjene {
+  position: relative;
   border-bottom: 1px solid red;
   border-left: 1px solid red;
+  padding-left: 20px;
 
   display: flex;
   flex-direction: row;
@@ -292,7 +294,27 @@ table.tabelar-form {
   align-items: flex-end;
   flex-wrap: nowrap;
 
+  .prosjek-svih {
+    z-index: 50;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    /* background-color: blue; */
+    border-top: 1px solid green;
+
+    .prosjek-naslov{
+      position: absolute;
+      right: -75px;
+      top: -12px;
+      width: 70px;
+      font-size: 12px;
+      /* outline: 1px dashed red; */
+    }
+  }
+
   .jedan-predmet {
+    z-index: 99;
     position: relative;
     margin-right: 20px;
 
@@ -303,6 +325,11 @@ table.tabelar-form {
     flex-wrap: nowrap;
 
     .jedna-ocjena {
+      z-index: 99;
+
+      position: relative;
+      top: 5px;
+
       width: 10px;
       height: 10px;
       border-radius: 100%;
@@ -316,18 +343,19 @@ table.tabelar-form {
       text-align: center;
     }
 
-    .prosjek-predmeta{
+    .prosjek-predmeta {
+      z-index: 50;
       position: absolute;
       bottom: 0px;
       left: 0px;
       right: 0px;
-      background-color: rgba(216, 187, 132, 0.4);
+      background-color: rgba(76, 64, 41, 0.4);
     }
 
-    .predmet-naslov{
+    .predmet-naslov {
       position: absolute;
       bottom: -25px;
-      left:0px;
+      left: 0px;
     }
   }
 

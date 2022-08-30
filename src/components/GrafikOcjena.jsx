@@ -2,11 +2,13 @@ import { izracunajProsecnuOcenu } from "../utils/ocene-utils";
 
 const GrafikOcjena = () => {
 
-  let ocjene = [1, 2, 5, 3, 4];
 
-  let prosjekPredmeta = izracunajProsecnuOcenu(ocjene);
 
-  let visinaProsjekaPredmeta = prosjekPredmeta * 20;
+  let ocjene = [1, 0, 2, 5, 3, 4];
+
+  const prosjekPredmeta = izracunajProsecnuOcenu(ocjene);
+
+  const visinaProsjekaPredmeta = prosjekPredmeta * 20;
 
   let jsxNiz = ocjene.map((ocjena) => {
     let visina = ocjena * 20;
@@ -14,12 +16,14 @@ const GrafikOcjena = () => {
       <div
         className="jedna-ocjena"
         style={{
-          marginBottom: visina
+          marginBottom: visina + 'px'
         }}
       >{ocjena}</div>
     )
   });
 
+  const prosjek = 4;
+  const visinaProsjeka = prosjek * 20;
 
   return (
     <>
@@ -27,28 +31,37 @@ const GrafikOcjena = () => {
 
       <div className="grafik-ocjene">
 
-        <div className="jedan-predmet">
-          {jsxNiz}
-          <div
-            className="prosjek-predmeta"
-            style={{
-              height: visinaProsjekaPredmeta
-            }}
-          >
-          </div>
-          <div className="predmet-naslov">naslov</div>
+        <div
+          className="prosjek-svih"
+          style={{
+            height: visinaProsjeka + 'px'
+          }}
+        >
+          <div className="prosjek-naslov">Prosjek: {prosjek}</div>
         </div>
 
         <div className="jedan-predmet">
-          {jsxNiz}
           <div
             className="prosjek-predmeta"
             style={{
-              height: visinaProsjekaPredmeta
+              height: visinaProsjekaPredmeta + 'px'
             }}
           >
           </div>
           <div className="predmet-naslov">naslov</div>
+          {jsxNiz}
+        </div>
+
+        <div className="jedan-predmet">
+          <div
+            className="prosjek-predmeta"
+            style={{
+              height: visinaProsjekaPredmeta + 'px'
+            }}
+          >
+          </div>
+          <div className="predmet-naslov">naslov</div>
+          {jsxNiz}
         </div>
 
 
