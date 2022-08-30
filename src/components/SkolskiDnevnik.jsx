@@ -1,4 +1,5 @@
 import { useState } from "react";
+import GrafikOcjena from "./GrafikOcjena";
 
 
 // utils
@@ -61,11 +62,13 @@ const SkolskiDnevnik = () => {
 
   const dajOcenu = (predmet, ocena) => {
     console.log("Daj ocenu: ", predmet, ocena);
-    const updatedOcene = {
-      ...ocene,
-      [predmet]: [...ocene[predmet], ocena]
-    };
-    setOcene(updatedOcene);
+    if (zakljuceno === false) {
+      const updatedOcene = {
+        ...ocene,
+        [predmet]: [...ocene[predmet], ocena]
+      };
+      setOcene(updatedOcene);
+    }
   };
 
   let prosecneOceneIzSvihPredmeta = [];
@@ -90,16 +93,24 @@ const SkolskiDnevnik = () => {
           const oceneIzTogPredmeta = ocene[predmet];
           const oceneZaIspis = oceneIzTogPredmeta.join(', ');
           const prosecnaOcena = izracunajProsecnuOcenu(oceneIzTogPredmeta);
-          return (
-            <div key={predmet}>
-              <h4>{predmet}</h4>
-              <p>Ocene: {oceneZaIspis} - prosečna: {prosecnaOcena}</p>
-              <div>
+          let jsx = null;
+          if (zakljuceno === false) {
+            jsx = (
+              <>
                 Daj ocenu: <button onClick={() => { dajOcenu(predmet, 1) }}>1</button>
                 <button onClick={() => { dajOcenu(predmet, 2) }}>2</button>
                 <button onClick={() => { dajOcenu(predmet, 3) }}>3</button>
                 <button onClick={() => { dajOcenu(predmet, 4) }}>4</button>
                 <button onClick={() => { dajOcenu(predmet, 5) }}>5</button>
+              </>
+            )
+          }
+          return (
+            <div key={predmet}>
+              <h4>{predmet}</h4>
+              <p>Ocene: {oceneZaIspis} - prosečna: {prosecnaOcena}</p>
+              <div>
+                {jsx}
               </div>
             </div>
           )
@@ -124,6 +135,8 @@ const SkolskiDnevnik = () => {
           <button onClick={handlerZakljuci}>Zakljuci</button>
         )
       }
+
+      <GrafikOcjena />
 
     </div>
 

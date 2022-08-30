@@ -280,3 +280,34 @@ table.tabelar-form {
 .grafik-kockica {
   min-width: 400px;
 }
+
+
+.grafik-ocjene {
+  border-bottom: 1px solid red;
+  border-left: 1px solid red;
+
+  .jedan-predmet {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end; 
+
+    
+
+
+    .jedna-ocjena {
+      width: 10px;
+      height: 10px;
+      border-radius: 100%;
+      /* border: 1px solid gray; */
+      background-color: silver;
+      background-color: rgb(255, 255, 142);
+
+      font-size: 8px;
+      font-weight: 600;
+      line-height: 9px;
+      text-align: center;
+    }
+  }
+
+}
