@@ -287,6 +287,7 @@ table.tabelar-form {
   border-bottom: 1px solid red;
   border-left: 1px solid red;
   padding-left: 20px;
+  margin-right: 80px;
 
   display: flex;
   flex-direction: row;
@@ -316,6 +317,7 @@ table.tabelar-form {
   .jedan-predmet {
     z-index: 99;
     position: relative;
+    min-width: 60px;
     margin-right: 20px;
 
     display: flex;
@@ -335,7 +337,7 @@ table.tabelar-form {
       border-radius: 100%;
       /* border: 1px solid gray; */
       background-color: silver;
-      background-color: rgb(255, 255, 142);
+      background-color: rgb(246, 184, 97);
 
       font-size: 8px;
       font-weight: 600;
@@ -354,8 +356,9 @@ table.tabelar-form {
 
     .predmet-naslov {
       position: absolute;
-      bottom: -25px;
+      bottom: -15px;
       left: 0px;
+      font-size: 11px;
     }
   }
 

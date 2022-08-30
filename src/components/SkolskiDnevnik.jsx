@@ -136,7 +136,7 @@ const SkolskiDnevnik = () => {
         )
       }
 
-      <GrafikOcjena />
+      <GrafikOcjena ocene={ocene}/>
 
     </div>
 

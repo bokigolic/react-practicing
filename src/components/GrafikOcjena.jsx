@@ -1,29 +1,50 @@
 import { izracunajProsecnuOcenu } from "../utils/ocene-utils";
 
-const GrafikOcjena = () => {
+const GrafikOcjena = (props) => {
+  const sveOcjene = props.ocene;
 
+  let prosecneOceneIzSvihPredmeta = [];
+  let jsxPredmeti = [];
 
+  let spisakPredmeta = Object.keys(sveOcjene);
+  spisakPredmeta.forEach((predmet) => {
+    // let oceneIzPredmeta = [1, 0, 2, 5, 3, 4];
+    const oceneIzPredmeta = sveOcjene[predmet];
+    const prosjekPredmeta = izracunajProsecnuOcenu(oceneIzPredmeta);
+    prosecneOceneIzSvihPredmeta.push(prosjekPredmeta);
+    const visinaProsjekaPredmeta = prosjekPredmeta * 20;
+    let jsxNiz = oceneIzPredmeta.map((ocjena) => {
+      let visina = ocjena * 20;
+      return (
+        <div
+          className="jedna-ocjena"
+          style={{
+            marginBottom: visina + 'px'
+          }}
+        >{ocjena}</div>
+      )
+    });
 
-  let ocjene = [1, 0, 2, 5, 3, 4];
+    jsxPredmeti.push(
+      <div className="jedan-predmet">
+        <div
+          className="prosjek-predmeta"
+          style={{
+            height: visinaProsjekaPredmeta + 'px'
+          }}
+        >
+        </div>
+        <div className="predmet-naslov">{predmet}</div>
+        {jsxNiz}
+      </div>
+    );
 
-  const prosjekPredmeta = izracunajProsecnuOcenu(ocjene);
-
-  const visinaProsjekaPredmeta = prosjekPredmeta * 20;
-
-  let jsxNiz = ocjene.map((ocjena) => {
-    let visina = ocjena * 20;
-    return (
-      <div
-        className="jedna-ocjena"
-        style={{
-          marginBottom: visina + 'px'
-        }}
-      >{ocjena}</div>
-    )
   });
 
-  const prosjek = 4;
-  const visinaProsjeka = prosjek * 20;
+
+  const glavnaProsecnaOcena = izracunajProsecnuOcenu(prosecneOceneIzSvihPredmeta)
+
+  const visinaProsjeka = glavnaProsecnaOcena * 20;
 
   return (
     <>
@@ -37,33 +58,11 @@ const GrafikOcjena = () => {
             height: visinaProsjeka + 'px'
           }}
         >
-          <div className="prosjek-naslov">Prosjek: {prosjek}</div>
+          <div className="prosjek-naslov">Prosjek: {glavnaProsecnaOcena}</div>
         </div>
 
-        <div className="jedan-predmet">
-          <div
-            className="prosjek-predmeta"
-            style={{
-              height: visinaProsjekaPredmeta + 'px'
-            }}
-          >
-          </div>
-          <div className="predmet-naslov">naslov</div>
-          {jsxNiz}
-        </div>
 
-        <div className="jedan-predmet">
-          <div
-            className="prosjek-predmeta"
-            style={{
-              height: visinaProsjekaPredmeta + 'px'
-            }}
-          >
-          </div>
-          <div className="predmet-naslov">naslov</div>
-          {jsxNiz}
-        </div>
-
+        {jsxPredmeti}
 
 
       </div>
