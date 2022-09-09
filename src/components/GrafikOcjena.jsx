@@ -43,7 +43,6 @@ const GrafikOcjena = (props) => {
 
 
   const glavnaProsecnaOcena = izracunajProsecnuOcenu(prosecneOceneIzSvihPredmeta)
-
   const visinaProsjeka = glavnaProsecnaOcena * 20;
 
   return (
