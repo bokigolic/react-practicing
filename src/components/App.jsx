@@ -15,16 +15,20 @@ import AnalogClock2 from './AnalogClock2';
 import Calculator from './Calculator';
 import GrafikOdKockica from './GrafikOdKockica';
 import SkolskiDnevnik from './SkolskiDnevnik';
+import ParkingGaraza from './ParkingGaraza';
 
 const App = () => {
   return (
     <>
       <div className="wrapper">
-      <div className="universal-okvir">
+        <div className="universal-okvir">
+          <ParkingGaraza />
+        </div>
+        <div className="universal-okvir">
           <SkolskiDnevnik />
         </div>
         <div className="universal-okvir">
-          <GrafikOdKockica niz={[1,5,8,2,6,4,9]} />
+          <GrafikOdKockica niz={[1, 5, 8, 2, 6, 4, 9]} />
         </div>
         <div className="universal-okvir">
           <Calculator />
