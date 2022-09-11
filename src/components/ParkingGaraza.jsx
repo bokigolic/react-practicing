@@ -64,6 +64,22 @@ const ParkingGaraza = () => {
     });
   };
 
+
+  const handleMakeNewCar = () => {
+    // ova funkcija kreira slucajni automobil marku i broj tablica
+    const nizMarki = ['Audi', "BMW", "Kia", "Opel", "VW"];
+    const marka = nizMarki[Math.floor(Math.random()*nizMarki.length)];
+    const tabliceInteger = Math.floor(Math.random()*9999);
+    const tablice = ('AAAA' + tabliceInteger).slice(-4);
+    const automobil = marka + ' ' + tablice;
+    // upisujemo novi automobil u form uu polje automobil
+    setFormState({
+      ...formState,
+      automobil: automobil
+    })
+  };
+
+
   return (
     <div>
       <h1>Parking Garaza</h1>
@@ -135,6 +151,11 @@ const ParkingGaraza = () => {
 
 
       <h3>Widget za parkiranje novog vozila</h3>
+
+      <button onClick={handleMakeNewCar}>Neka se pojavi novi automobil</button>
+      <br />
+      <br />
+
       <form>
         <div>
           <label>Automobil </label>
