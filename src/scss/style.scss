@@ -304,7 +304,7 @@ table.tabelar-form {
     /* background-color: blue; */
     border-top: 1px solid green;
 
-    .prosjek-naslov{
+    .prosjek-naslov {
       position: absolute;
       right: -75px;
       top: -12px;
@@ -361,5 +361,54 @@ table.tabelar-form {
       font-size: 11px;
     }
   }
+}
 
+
+//parking garaza
+.monitor-garaze {
+  .sprat {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    border: 1px solid black;
+
+    >header {
+      width: 60px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+
+    .podsprat {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+
+
+      header {
+        width: 20px;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      .lista-parking-mesta {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: stretch;
+        flex-wrap: nowrap;
+
+        .mesto {
+          border: 1px dashed red;
+          font-size: 11px;
+          width: 50px;
+          height: 40px;
+          text-align: center;
+        }
+      }
+    }
+  }
 }

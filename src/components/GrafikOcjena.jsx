@@ -7,16 +7,17 @@ const GrafikOcjena = (props) => {
   let jsxPredmeti = [];
 
   let spisakPredmeta = Object.keys(sveOcjene);
-  spisakPredmeta.forEach((predmet) => {
+  spisakPredmeta.forEach((predmet, index) => {
     // let oceneIzPredmeta = [1, 0, 2, 5, 3, 4];
     const oceneIzPredmeta = sveOcjene[predmet];
     const prosjekPredmeta = izracunajProsecnuOcenu(oceneIzPredmeta);
     prosecneOceneIzSvihPredmeta.push(prosjekPredmeta);
     const visinaProsjekaPredmeta = prosjekPredmeta * 20;
-    let jsxNiz = oceneIzPredmeta.map((ocjena) => {
+    let jsxNiz = oceneIzPredmeta.map((ocjena, index2) => {
       let visina = ocjena * 20;
       return (
         <div
+          key={index2}
           className="jedna-ocjena"
           style={{
             marginBottom: visina + 'px'
@@ -26,7 +27,7 @@ const GrafikOcjena = (props) => {
     });
 
     jsxPredmeti.push(
-      <div className="jedan-predmet">
+      <div key={index} className="jedan-predmet">
         <div
           className="prosjek-predmeta"
           style={{
