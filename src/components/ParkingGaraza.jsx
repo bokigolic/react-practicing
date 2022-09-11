@@ -18,6 +18,8 @@ i formu gde biramo sprat i parking mesto gde hocem oda parkiramo
 - u buducim verzijama cemo zakomplikovati i stavicemo da pored automobila upisuje i vreme kad je parkirao
 - a u kockicama ce onima koji su duze vreme parkiran ida se menja boja kockice. na primer cim se parkira bude zeleno a posle nekog vremena narndzasta pa crvena...
 
+- kod parking mesta moze mali X button koji brise automobil sa aprking mesta
+
 */
 
 
@@ -48,7 +50,8 @@ const ParkingGaraza = () => {
   const preset = {
     automobil: "",
     sprat: "sprat1",
-    podsprat: "podSpratA"
+    podsprat: "podSpratA",
+    brojmesta: "0"
   };
 
   const [formState, setFormState] = useState(preset);
@@ -65,11 +68,32 @@ const ParkingGaraza = () => {
   };
 
 
+  const handleParkiraj = () => {
+    console.log('Parkiraj...', formState.automobil, formState.sprat, formState.podsprat, formState.brojmesta);
+
+    // provera da li je parking mesto prazno
+    if (garaza[formState.sprat][formState.podsprat][parseInt(formState.brojmesta)] === null) {
+      // mesto je prazno
+      console.log('slobodno :)');
+      // upisujem ou state na principou da prvo napravimo kao izgleda novi state
+      const updatedGaraza = {
+        ...garaza
+      };
+      updatedGaraza[formState.sprat][formState.podsprat][parseInt(formState.brojmesta)] = formState.automobil; // sad u novoj garazi updateujem osamo na odabranom spratu, odabranom podspratu, podabranoj poziciji samo taj item 
+      // sad upisujemo pripremljeni state u pravi satte garaze
+      setGaraza(updatedGaraza);
+    } else {
+      // mesto je popunjeno
+      window.alert('Odabrano parking mesto je zauzeto!')
+    }
+  };
+
+
   const handleMakeNewCar = () => {
     // ova funkcija kreira slucajni automobil marku i broj tablica
     const nizMarki = ['Audi', "BMW", "Kia", "Opel", "VW"];
-    const marka = nizMarki[Math.floor(Math.random()*nizMarki.length)];
-    const tabliceInteger = Math.floor(Math.random()*9999);
+    const marka = nizMarki[Math.floor(Math.random() * nizMarki.length)];
+    const tabliceInteger = Math.floor(Math.random() * 9999);
     const tablice = ('AAAA' + tabliceInteger).slice(-4);
     const automobil = marka + ' ' + tablice;
     // upisujemo novi automobil u form uu polje automobil
@@ -185,8 +209,24 @@ const ParkingGaraza = () => {
             <option value="podSpratA">A</option>
             <option value="podSpratB">B</option>
           </select>
+          <select
+            name="brojmesta"
+            value={formState.brojmesta}
+            onChange={handleChange}
+          >
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+          </select>
         </div>
-        <button>Parkiraj</button>
+        <button type="button" onClick={handleParkiraj}>Parkiraj</button>
       </form>
 
     </div>
