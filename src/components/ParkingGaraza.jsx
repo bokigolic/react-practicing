@@ -45,6 +45,25 @@ const ParkingGaraza = () => {
 
   const [garaza, setGaraza] = useState(initialState);
 
+  const preset = {
+    automobil: "",
+    sprat: "sprat1",
+    podsprat: "podSpratA"
+  };
+
+  const [formState, setFormState] = useState(preset);
+
+  const handleChange = (e) => {
+    // univerzalni handleChange za sve forme, radi i za checboxove
+    const target = e.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+    setFormState({
+      ...formState,
+      [name]: value
+    });
+  };
+
   return (
     <div>
       <h1>Parking Garaza</h1>
@@ -112,10 +131,42 @@ const ParkingGaraza = () => {
             />
           </footer>
         </div>
-
       </div>
 
+
       <h3>Widget za parkiranje novog vozila</h3>
+      <form>
+        <div>
+          <label>Automobil </label>
+          <input
+            type='text'
+            name='automobil'
+            value={formState.automobil}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <select
+            name="sprat"
+            value={formState.sprat}
+            onChange={handleChange}
+          >
+            <option value="sprat1">Sprat 1</option>
+            <option value="sprat2">Sprat 2</option>
+            <option value="sprat3">Sprat 3</option>
+            <option value="sprat4">Sprat 4</option>
+          </select>
+          <select
+            name="podsprat"
+            value={formState.podsprat}
+            onChange={handleChange}
+          >
+            <option value="podSpratA">A</option>
+            <option value="podSpratB">B</option>
+          </select>
+        </div>
+        <button>Parkiraj</button>
+      </form>
 
     </div>
   )
