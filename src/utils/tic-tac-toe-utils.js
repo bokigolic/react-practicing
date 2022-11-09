@@ -60,8 +60,33 @@ const isAllFieldsFiledV2 = (board) => {
 
 
 
+const isWinInRows = (board) => {
+  for (let row = 0; row <= 2; row++) {
+    if (board[row][0] === null) {
+      // prvo polje je null znaci prvi red sigurno NIJE WIN
+      // return false;
+    } else {
+      if (board[row][0] === board[row][1] && board[row][1] === board[row][2]) {
+        // WIN
+        return true; // returnujem oodamh WIN jer cim je pronadjena WIn bilo gde gotova je igra
+      } else {
+        // jedno polje se ipak razlikuje, NIJE WIN
+        // return false;
+      }
+    }
+  }
+  // if not win
+  return false;
+}
+
+
 export const isTicTacToeFinished = (board) => {
-  // test 1) da li su sva polja popunjena
+  // test 1)
+  if (isWinInRows(board)) {
+    return true;
+  }
+
+  // test 2) da li su sva polja popunjena
   if (isAllFieldsFiled(board)) {
     // znaci sva su polja popunjena
     // znaci igra je FINISHED na jedan nacin
@@ -69,4 +94,5 @@ export const isTicTacToeFinished = (board) => {
   } else {
     return false;
   }
+
 };
