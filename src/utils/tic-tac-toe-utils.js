@@ -61,17 +61,22 @@ const isAllFieldsFiledV2 = (board) => {
 
 
 const isWinInRows = (board) => {
-  if (board[0][0] === null) {
-    // prvo polje je null znaci prvi red sigurno NIJE WIN
-    return false;
-  } else {
-    if (board[0][0] === board[0][1] && board[0][1] === board[0][2]) {
-      return true;
+  for (let row = 0; row <= 2; row++) {
+    if (board[row][0] === null) {
+      // prvo polje je null znaci prvi red sigurno NIJE WIN
+      // return false;
     } else {
-      // jedno polje se ipak razlikuje, NIJE WIN
-      return false;
+      if (board[row][0] === board[row][1] && board[row][1] === board[row][2]) {
+        // WIN
+        return true; // returnujem oodamh WIN jer cim je pronadjena WIn bilo gde gotova je igra
+      } else {
+        // jedno polje se ipak razlikuje, NIJE WIN
+        // return false;
+      }
     }
   }
+  // if not win
+  return false;
 }
 
 
