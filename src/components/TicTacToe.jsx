@@ -10,6 +10,7 @@ const TicTacToe = () => {
   ];
 
   const [board, setBoard] = useState(initialBoard)
+  const [currentPlayer, setCurrentPlayer] = useState("X")
 
   const handleReset = () => {
     // setBoard(initialBoard); // postoji mogucnost referencovanja na stari objekat
@@ -18,13 +19,20 @@ const TicTacToe = () => {
       [null, null, null],
       [null, null, null]
     ]);
+    setCurrentPlayer("X")
   }
 
   const clickOnField = (row, col) => {
     console.log("click on ", row, col)
     let updatedBoard = [...board]
-    updatedBoard[row][col] = 'X';
+    updatedBoard[row][col] = currentPlayer;
     setBoard(updatedBoard)
+    // after move, change player
+    if (currentPlayer === "X") {
+      setCurrentPlayer("O")
+    } else {
+      setCurrentPlayer("X")
+    }
   }
 
   return (
