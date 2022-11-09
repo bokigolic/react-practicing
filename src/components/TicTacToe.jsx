@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { isTicTacToeFinished } from "../utils/tic-tac-toe-utils";
 import TicTacToeField from "./TicTacToeField";
 
 const TicTacToe = () => {
@@ -11,6 +12,7 @@ const TicTacToe = () => {
 
   const [board, setBoard] = useState(initialBoard)
   const [currentPlayer, setCurrentPlayer] = useState("X")
+  const [finished, setFinished] = useState(false)
 
   const handleReset = () => {
     // setBoard(initialBoard); // postoji mogucnost referencovanja na stari objekat
@@ -20,24 +22,41 @@ const TicTacToe = () => {
       [null, null, null]
     ]);
     setCurrentPlayer("X")
+    setFinished(false)
   }
 
   const clickOnField = (row, col) => {
     console.log("click on ", row, col)
-    let updatedBoard = [...board]
-    updatedBoard[row][col] = currentPlayer;
-    setBoard(updatedBoard)
-    // after move, change player
-    if (currentPlayer === "X") {
-      setCurrentPlayer("O")
+    if (finished === false) {
+      let updatedBoard = [...board]
+      updatedBoard[row][col] = currentPlayer;
+      setBoard(updatedBoard)
+      // after move, change player
+      if (currentPlayer === "X") {
+        setCurrentPlayer("O")
+      } else {
+        setCurrentPlayer("X")
+      }
+      // TODO sad moramo proveriti da li je posle poteza mozda neki igrac pobedio
+      // ili da je igra zavrsena na neki drugi nacin
+      if (isTicTacToeFinished(board)) {
+        setFinished(true)
+      } else {
+        setFinished(false)
+      }
     } else {
-      setCurrentPlayer("X")
+      // game is finished
+      // do nothing
     }
   }
 
   return (
     <div>
       <h1>Tic Tac Toe</h1>
+      <p>Player {currentPlayer} please make a move</p>
+      {
+        finished ? 'Game is finished!' : ''
+      }
       <div className="tic-tac-toe-board">
         <TicTacToeField row={0} col={0} board={board} clicked={clickOnField} />
         <TicTacToeField row={0} col={1} board={board} clicked={clickOnField} />
