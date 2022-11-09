@@ -22,7 +22,7 @@ Nardjenje glasi: idi na SVAKI (EACH) sprat i proveri SVAKU (EACH) sobu
 */
 
 
-const isAllFieldsFiled = (board) => {
+export const isAllFieldsFiled = (board) => {
   // 1) pocinjemo sa pretpostavkom dq su sve sobe popunjene
   let filled = true;
   // 2) a onda prgledavamo i ako je samo jedna prazna menjamo rezultat na NISU POPUNJENE i niko vise ne moze taj reziultat da vrati dajesu
@@ -68,7 +68,8 @@ const isWinInAnyRow = (board) => {
     } else {
       if (board[row][0] === board[row][1] && board[row][1] === board[row][2]) {
         // WIN
-        return true; // returnujem oodamh WIN jer cim je pronadjena WIn bilo gde gotova je igra
+        // return true; // returnujem oodamh WIN jer cim je pronadjena WIn bilo gde gotova je igra
+        return board[row][0];
       } else {
         // jedno polje se ipak razlikuje, NIJE WIN
         // return false;
@@ -87,7 +88,8 @@ const isWinInAnyCol = (board) => {
     } else {
       if (board[0][col] === board[1][col] && board[1][col] === board[2][col]) {
         // WIN
-        return true; // returnujemo odmah WIN, je cim je pronadjen WIN igra ej gotova i nema daljih provera
+        // return true; // returnujemo odmah WIN, je cim je pronadjen WIN igra ej gotova i nema daljih provera
+        return board[0][col];
       } else {
         // jedno polje se ipak razlikuje, NIJE WIN
         // return false;
@@ -102,23 +104,48 @@ const isWinInAnyCol = (board) => {
 const isWinInAnyDiagonal = (board) => {
   // diagonal from top left
   if (board[0][0] === null) {
-    // ako je grel levo polje prazno onda nemam WIN u prvoj dijagonali
+    // ako je gore levo polje prazno onda nemam WIN u prvoj dijagonali
   } else {
-    if (board[0][0] === board[1][1] && board[2][2]) {
+    if (board[0][0] === board[1][1] && board[2][2] === board[1][1]) {
       //WIN
-      return true; // Returnujemo odmah WIN, Igra je zavrsena i nema dalji provjera
+      // return true; // Returnujemo odmah WIN, Igra je zavrsena i nema dalji provjera
+      return board[1][1];
     }
   }
   // diagonal from top right
   if (board[0][2] === null) {
-    // ako je grel desno polje prazno onda nemam WIN u drugoj dijagonali
+    // ako je gore desno polje prazno onda nemam WIN u drugoj dijagonali
   } else {
-    if (board[0][2] === board[1][1] && [2][0]) {
+    if (board[0][2] === board[1][1] && board[2][0] === board[1][1]) {
       // WIN
-      return true; // Returnujemo odmah WIN, Igra je zavrsena i nema dalji provjera
+      // return true; // Returnujemo odmah WIN, Igra je zavrsena i nema dalji provjera
+      return board[1][1];
     }
   }
   // ukoliko nema WIN u dve dijagonale onda nije win
+  return false;
+};
+
+
+export const isWin = (board) => {
+  /*
+  if (isWinInAnyRow(board) || isWinInAnyCol(board) || isWinInAnyDiagonal(board)) {
+    return true;
+  }
+  */
+  let win1 = isWinInAnyRow(board)
+  if (win1 !== false) {
+    return win1;
+  }
+  let win2 = isWinInAnyCol(board)
+  if (win2 !== false) {
+    return win2;
+  }
+  let win3 = isWinInAnyDiagonal(board)
+  if (win3 !== false) {
+    return win3;
+  }
+  // ako je doslo dovde znaci nemamo win.
   return false;
 };
 
