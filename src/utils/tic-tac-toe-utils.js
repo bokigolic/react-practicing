@@ -60,7 +60,7 @@ const isAllFieldsFiledV2 = (board) => {
 
 
 
-const isWinInRows = (board) => {
+const isWinInAnyRow = (board) => {
   for (let row = 0; row <= 2; row++) {
     if (board[row][0] === null) {
       // prvo polje je null znaci prvi red sigurno NIJE WIN
@@ -77,12 +77,33 @@ const isWinInRows = (board) => {
   }
   // if not win
   return false;
-}
+};
+
+
+const isWinInAnyCol = (board) => {
+  for (let col = 0; col <= 2; col++) {
+    if (board[0][col] === null) {
+      // proverenoi je da je prvo polje kolone null NIJE WIN u toj koloni;
+    } else {
+      if (board[0][col] === board[1][col] && board[1][col] === board[2][col]) {
+        // WIN
+        return true; // returnujemo odmah WIN, je cim je pronadjen WIN igra ej gotova i nema daljih provera
+      } else {
+        // jedno polje se ipak razlikuje, NIJE WIN
+        // return false;
+      }
+    }
+  }
+  // if not win
+  return false;
+};
+
+
 
 
 export const isTicTacToeFinished = (board) => {
   // test 1)
-  if (isWinInRows(board)) {
+  if (isWinInAnyRow(board) || isWinInAnyCol(board)) {
     return true;
   }
 
