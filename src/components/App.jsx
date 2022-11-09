@@ -16,11 +16,15 @@ import Calculator from './Calculator';
 import GrafikOdKockica from './GrafikOdKockica';
 import SkolskiDnevnik from './SkolskiDnevnik';
 import ParkingGaraza from './ParkingGaraza';
+import TicTacToe from './TicTacToe';
 
 const App = () => {
   return (
     <>
       <div className="wrapper">
+        <div className='universal-okvir'>
+          <TicTacToe />
+        </div>
         <div className="universal-okvir">
           <ParkingGaraza />
         </div>
