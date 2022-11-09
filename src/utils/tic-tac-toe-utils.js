@@ -99,11 +99,33 @@ const isWinInAnyCol = (board) => {
 };
 
 
+const isWinInAnyDiagonal = (board) => {
+  // diagonal from top left
+  if (board[0][0] === null) {
+    // ako je grel levo polje prazno onda nemam WIN u prvoj dijagonali
+  } else {
+    if (board[0][0] === board[1][1] && board[2][2]) {
+      //WIN
+      return true; // Returnujemo odmah WIN, Igra je zavrsena i nema dalji provjera
+    }
+  }
+  // diagonal from top right
+  if (board[0][2] === null) {
+    // ako je grel desno polje prazno onda nemam WIN u drugoj dijagonali
+  } else {
+    if (board[0][2] === board[1][1] && [2][0]) {
+      // WIN
+      return true; // Returnujemo odmah WIN, Igra je zavrsena i nema dalji provjera
+    }
+  }
+  // ukoliko nema WIN u dve dijagonale onda nije win
+  return false;
+};
 
 
 export const isTicTacToeFinished = (board) => {
   // test 1)
-  if (isWinInAnyRow(board) || isWinInAnyCol(board)) {
+  if (isWinInAnyRow(board) || isWinInAnyCol(board) || isWinInAnyDiagonal(board)) {
     return true;
   }
 
