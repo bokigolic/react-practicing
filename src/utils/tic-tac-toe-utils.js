@@ -62,14 +62,17 @@ const isAllFieldsFiledV2 = (board) => {
 
 const isWinInAnyRow = (board) => {
   for (let row = 0; row <= 2; row++) {
-    if (board[row][0] === null) {
+    const firstField = board[row][0];
+    const secondField = board[row][1];
+    const thirdField = board[row][2];
+    if (firstField === null) {
       // prvo polje je null znaci prvi red sigurno NIJE WIN
       // return false;
     } else {
-      if (board[row][0] === board[row][1] && board[row][1] === board[row][2]) {
+      if (firstField === secondField && firstField === thirdField) {
         // WIN
         // return true; // returnujem oodamh WIN jer cim je pronadjena WIn bilo gde gotova je igra
-        return board[row][0];
+        return firstField;
       } else {
         // jedno polje se ipak razlikuje, NIJE WIN
         // return false;
@@ -83,13 +86,16 @@ const isWinInAnyRow = (board) => {
 
 const isWinInAnyCol = (board) => {
   for (let col = 0; col <= 2; col++) {
-    if (board[0][col] === null) {
+    const firstField = board[0][col];
+    const secondField = board[1][col];
+    const thirdField = board[2][col];
+    if (firstField === null) {
       // proverenoi je da je prvo polje kolone null NIJE WIN u toj koloni;
     } else {
-      if (board[0][col] === board[1][col] && board[1][col] === board[2][col]) {
+      if (firstField === secondField && firstField === thirdField) {
         // WIN
         // return true; // returnujemo odmah WIN, je cim je pronadjen WIN igra ej gotova i nema daljih provera
-        return board[0][col];
+        return firstField;
       } else {
         // jedno polje se ipak razlikuje, NIJE WIN
         // return false;
@@ -101,28 +107,37 @@ const isWinInAnyCol = (board) => {
 };
 
 
-const isWinInAnyDiagonal = (board) => {
+const isWinInDiagonal1 = (board) => {
   // diagonal from top left
-  if (board[0][0] === null) {
+  const firstField = board[0][0];
+  const secondField = board[1][1];
+  const thirdField = board[2][2];
+  if (firstField === null) {
     // ako je gore levo polje prazno onda nemam WIN u prvoj dijagonali
   } else {
-    if (board[0][0] === board[1][1] && board[2][2] === board[1][1]) {
+    if (firstField === secondField && firstField === thirdField) {
       //WIN
       // return true; // Returnujemo odmah WIN, Igra je zavrsena i nema dalji provjera
-      return board[1][1];
+      return firstField;
     }
   }
+  return false;
+};
+
+const isWinInDiagonal2 = (board) => {
   // diagonal from top right
-  if (board[0][2] === null) {
-    // ako je gore desno polje prazno onda nemam WIN u drugoj dijagonali
+  const firstField = board[0][2];
+  const secondField = board[1][1];
+  const thirdField = board[2][0];
+  if (firstField === null) {
+    // ako je gore levo polje prazno onda nemam WIN u prvoj dijagonali
   } else {
-    if (board[0][2] === board[1][1] && board[2][0] === board[1][1]) {
-      // WIN
+    if (firstField === secondField && firstField === thirdField) {
+      //WIN
       // return true; // Returnujemo odmah WIN, Igra je zavrsena i nema dalji provjera
-      return board[1][1];
+      return firstField;
     }
   }
-  // ukoliko nema WIN u dve dijagonale onda nije win
   return false;
 };
 
@@ -141,10 +156,15 @@ export const isWin = (board) => {
   if (win2 !== false) {
     return win2;
   }
-  let win3 = isWinInAnyDiagonal(board)
+  let win3 = isWinInDiagonal1(board)
   if (win3 !== false) {
     return win3;
   }
+  let win4 = isWinInDiagonal2(board)
+  if (win4 !== false) {
+    return win4
+  }
+
   // ako je doslo dovde znaci nemamo win.
   return false;
 };
@@ -152,7 +172,7 @@ export const isWin = (board) => {
 
 export const isTicTacToeFinished = (board) => {
   // test 1)
-  if (isWinInAnyRow(board) || isWinInAnyCol(board) || isWinInAnyDiagonal(board)) {
+  if (isWinInAnyRow(board) || isWinInAnyCol(board) || isWinInDiagonal1(board) || isWinInDiagonal2(board)) {
     return true;
   }
 
