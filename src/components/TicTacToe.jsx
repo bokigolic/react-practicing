@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { isTicTacToeFinished } from "../utils/tic-tac-toe-utils";
+import { isAllFieldsFiled, isTicTacToeFinished, isWin } from "../utils/tic-tac-toe-utils";
 import TicTacToeField from "./TicTacToeField";
 
 const TicTacToe = () => {
@@ -13,6 +13,7 @@ const TicTacToe = () => {
   const [board, setBoard] = useState(initialBoard)
   const [currentPlayer, setCurrentPlayer] = useState("X")
   const [finished, setFinished] = useState(false)
+  const [winner, setWinner] = useState(null);
 
   const handleReset = () => {
     // setBoard(initialBoard); // postoji mogucnost referencovanja na stari objekat
@@ -39,14 +40,40 @@ const TicTacToe = () => {
       }
       // TODO sad moramo proveriti da li je posle poteza mozda neki igrac pobedio
       // ili da je igra zavrsena na neki drugi nacin
-      if (isTicTacToeFinished(board)) {
+      // if (isTicTacToeFinished(board)) {
+      let _winner = isWin(board)
+      if (_winner !== false) {
+        // WIN
+        setWinner(_winner)
         setFinished(true)
       } else {
-        setFinished(false)
+        // no win
+        if (isAllFieldsFiled(board)) {
+          setFinished(true)
+          setWinner(null) // No winner - DRAW
+        } else {
+          setFinished(false)
+        }
       }
+
+
     } else {
       // game is finished
       // do nothing
+    }
+  }
+
+
+  let winJsx = null;
+  if (finished === true) {
+    if (winner === null) {
+      winJsx = (
+        <p>Draw!</p>
+      );
+    } else {
+      winJsx = (
+        <p>Winner is {winner}!!!</p>
+      );
     }
   }
 
@@ -57,6 +84,7 @@ const TicTacToe = () => {
       {
         finished ? 'Game is finished!' : ''
       }
+      {winJsx}
       <div className="tic-tac-toe-board">
         <TicTacToeField row={0} col={0} board={board} clicked={clickOnField} />
         <TicTacToeField row={0} col={1} board={board} clicked={clickOnField} />
