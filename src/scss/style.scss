@@ -417,6 +417,7 @@ table.tabelar-form {
 /*tic tac toe game*/
 
 .tic-tac-toe-board {
+  position: relative;
 
   width: 180px;
   display: flex;
@@ -428,7 +429,7 @@ table.tabelar-form {
     height: 60px;
     border: 1px solid black;
 
-    .figure{
+    .figure {
       /* background-color: orange; */
       width: 100%;
       height: 100%;
@@ -438,14 +439,76 @@ table.tabelar-form {
       font-weight: 900;
       font-size: 40px;
 
-      &.figure-empty{
+      &.figure-empty {
         cursor: pointer;
 
         &:hover {
-          background-color: rgba(0,0,0,0.1);
+          background-color: rgba(0, 0, 0, 0.1);
         }
       }
     }
 
+  }
+
+  .win-line {
+    position: absolute;
+    background-color: blue;
+
+    &.row0 {
+      top: 25px;
+      left: 0;
+      width: 180px;
+      height: 10px;
+    }
+
+    &.row1 {
+      top: 85px;
+      left: 0;
+      width: 180px;
+      height: 10px;
+    }
+
+    &.row2 {
+      top: 145px;
+      left: 0;
+      width: 180px;
+      height: 10px;
+    }
+
+    &.col0 {
+      top: 0;
+      left: 25px;
+      width: 10px;
+      height: 180px;
+    }
+
+    &.col1 {
+      top: 0;
+      left: 85px;
+      width: 10px;
+      height: 180px;
+    }
+
+    &.col2 {
+      top: 0;
+      left: 145px;
+      width: 10px;
+      height: 180px;
+    }
+
+    &.diagonal1 {
+      top: 85px;
+      left: -20px;
+      width: 220px;
+      height: 10px;
+      transform: rotate(45deg);
+    }
+    &.diagonal2 {
+      top: 85px;
+      left: -20px;
+      width: 220px;
+      height: 10px;
+      transform: rotate(135deg);
+    }
   }
 }

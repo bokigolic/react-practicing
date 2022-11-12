@@ -14,6 +14,7 @@ const TicTacToe = () => {
   const [currentPlayer, setCurrentPlayer] = useState("X")
   const [finished, setFinished] = useState(false)
   const [winner, setWinner] = useState(null);
+  const [winCase, setWinCase] = useState("");
 
   const handleReset = () => {
     // setBoard(initialBoard); // postoji mogucnost referencovanja na stari objekat
@@ -24,6 +25,8 @@ const TicTacToe = () => {
     ]);
     setCurrentPlayer("X")
     setFinished(false)
+    setWinner(null)
+    setWinCase("")
   }
 
   const clickOnField = (row, col) => {
@@ -41,24 +44,28 @@ const TicTacToe = () => {
       // TODO sad moramo proveriti da li je posle poteza mozda neki igrac pobedio
       // ili da je igra zavrsena na neki drugi nacin
       // if (isTicTacToeFinished(board)) {
-      let _winner = isWin(board)
-      if (_winner !== false) {
+      const answer = isWin(board)
+      const win = answer.win;
+      const winner = answer.winner;
+      const winCase = answer.winCase;
+      if (win === true) {
         // WIN
-        setWinner(_winner)
         setFinished(true)
+        setWinner(winner)
+        setWinCase(winCase)
       } else {
         // no win
         if (isAllFieldsFiled(board)) {
           setFinished(true)
           setWinner(null) // No winner - DRAW
+          setWinCase('')
         } else {
           setFinished(false)
         }
       }
 
-
     } else {
-      // game is finished
+      // game is finished so we ignoring clicks
       // do nothing
     }
   }
@@ -77,6 +84,13 @@ const TicTacToe = () => {
     }
   }
 
+  let winLineJsx = null;
+  if(winCase !== ""){
+    winLineJsx=(
+      <div className={"win-line " + winCase}></div>
+    )
+  }
+
   return (
     <div>
       <h1>Tic Tac Toe</h1>
@@ -86,6 +100,8 @@ const TicTacToe = () => {
       }
       {winJsx}
       <div className="tic-tac-toe-board">
+        {winLineJsx}
+
         <TicTacToeField row={0} col={0} board={board} clicked={clickOnField} />
         <TicTacToeField row={0} col={1} board={board} clicked={clickOnField} />
         <TicTacToeField row={0} col={2} board={board} clicked={clickOnField} />

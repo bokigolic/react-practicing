@@ -61,6 +61,12 @@ const isAllFieldsFiledV2 = (board) => {
 
 
 const isWinInAnyRow = (board) => {
+  let answer = {
+    win: false,
+    winner: null,
+    winCase: ''
+  };
+  //
   for (let row = 0; row <= 2; row++) {
     const firstField = board[row][0];
     const secondField = board[row][1];
@@ -72,7 +78,10 @@ const isWinInAnyRow = (board) => {
       if (firstField === secondField && firstField === thirdField) {
         // WIN
         // return true; // returnujem oodamh WIN jer cim je pronadjena WIn bilo gde gotova je igra
-        return firstField;
+        // return firstField;
+        answer.win = true;
+        answer.winner = firstField; // winner is 'X' or 'O'
+        answer.winCase = 'row' + row; // row0 row1 or row2
       } else {
         // jedno polje se ipak razlikuje, NIJE WIN
         // return false;
@@ -80,11 +89,17 @@ const isWinInAnyRow = (board) => {
     }
   }
   // if not win
-  return false;
+  return answer;
 };
 
 
 const isWinInAnyCol = (board) => {
+  let answer = {
+    win: false,
+    winner: null,
+    winCase: ''
+  };
+  //
   for (let col = 0; col <= 2; col++) {
     const firstField = board[0][col];
     const secondField = board[1][col];
@@ -95,7 +110,10 @@ const isWinInAnyCol = (board) => {
       if (firstField === secondField && firstField === thirdField) {
         // WIN
         // return true; // returnujemo odmah WIN, je cim je pronadjen WIN igra ej gotova i nema daljih provera
-        return firstField;
+        // return firstField;
+        answer.win = true;
+        answer.winner = firstField; // "X" or "O"
+        answer.winCase = "col" + col; // col0 or col1 or col2
       } else {
         // jedno polje se ipak razlikuje, NIJE WIN
         // return false;
@@ -103,12 +121,19 @@ const isWinInAnyCol = (board) => {
     }
   }
   // if not win
-  return false;
+  // return false;
+  return answer;
 };
 
 
 const isWinInDiagonal1 = (board) => {
   // diagonal from top left
+  let answer = {
+    win: false,
+    winner: null,
+    winCase: ''
+  };
+  //
   const firstField = board[0][0];
   const secondField = board[1][1];
   const thirdField = board[2][2];
@@ -118,14 +143,23 @@ const isWinInDiagonal1 = (board) => {
     if (firstField === secondField && firstField === thirdField) {
       //WIN
       // return true; // Returnujemo odmah WIN, Igra je zavrsena i nema dalji provjera
-      return firstField;
+      // return firstField;
+      answer.win = true
+      answer.winner = firstField;
+      answer.winCase = "diagonal1"
     }
   }
-  return false;
+  return answer;
 };
 
 const isWinInDiagonal2 = (board) => {
   // diagonal from top right
+  let answer = {
+    win: false,
+    winner: null,
+    winCase: ''
+  };
+  //
   const firstField = board[0][2];
   const secondField = board[1][1];
   const thirdField = board[2][0];
@@ -135,10 +169,13 @@ const isWinInDiagonal2 = (board) => {
     if (firstField === secondField && firstField === thirdField) {
       //WIN
       // return true; // Returnujemo odmah WIN, Igra je zavrsena i nema dalji provjera
-      return firstField;
+      //return firstField;
+      answer.win = true;
+      answer.winner = firstField;
+      answer.winCase = "diagonal2"
     }
   }
-  return false;
+  return answer;
 };
 
 
@@ -148,34 +185,34 @@ export const isWin = (board) => {
     return true;
   }
   */
-  let win1 = isWinInAnyRow(board)
-  if (win1 !== false) {
-    return win1;
+  let answer = isWinInAnyRow(board)
+  if (answer.win === true) {
+    return answer;
   }
-  let win2 = isWinInAnyCol(board)
-  if (win2 !== false) {
-    return win2;
+  answer = isWinInAnyCol(board)
+  if (answer.win === true) {
+    return answer;
   }
-  let win3 = isWinInDiagonal1(board)
-  if (win3 !== false) {
-    return win3;
+  answer = isWinInDiagonal1(board)
+  if (answer.win === true) {
+    return answer;
   }
-  let win4 = isWinInDiagonal2(board)
-  if (win4 !== false) {
-    return win4
+  answer = isWinInDiagonal2(board)
+  if (answer.win === true) {
+    return answer
   }
-
   // ako je doslo dovde znaci nemamo win.
-  return false;
+  // return false;
+  return answer; // u njemu ce biti answer.win false
 };
 
 
+/*
 export const isTicTacToeFinished = (board) => {
   // test 1)
   if (isWinInAnyRow(board) || isWinInAnyCol(board) || isWinInDiagonal1(board) || isWinInDiagonal2(board)) {
     return true;
   }
-
   // test 2) da li su sva polja popunjena
   if (isAllFieldsFiled(board)) {
     // znaci sva su polja popunjena
@@ -184,5 +221,5 @@ export const isTicTacToeFinished = (board) => {
   } else {
     return false;
   }
-
 };
+*/
