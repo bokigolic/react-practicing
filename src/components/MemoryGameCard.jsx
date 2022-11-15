@@ -10,7 +10,7 @@ const MemoryGameCard = (props) => {
 
   let jsx = null;
   if (card !== null) {
-    // ‚artica je na stolu
+    // kartica je na stolu
     if (isOpened === true) {
       // otvorena
       jsx = (
