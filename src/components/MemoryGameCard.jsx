@@ -1,11 +1,29 @@
-const MemoryCardGame = (props) => {
+const MemoryGameCard = (props) => {
   const card = props.card;
+  const index = props.index;
+  const isOpened = props.isOpened;
+  const clickOnCard = props.clickOnCard;
+
+  const handleClick = (e) => {
+    clickOnCard(index)
+  }
 
   let jsx = null;
   if (card !== null) {
-    jsx = (
-      <div className="memory-card">{card}</div>
-    )
+    // ‚artica je na stolu
+    if (isOpened === true) {
+      // otvorena
+      jsx = (
+        <div className="memory-card opened">{card}</div>
+      )
+    } else {
+      //zatvorena
+      jsx = (
+        <div className="memory-card" onClick={handleClick}></div>
+      )
+    }
+  } else {
+    // kartica je sklonjena sa stola
   }
 
   return (
@@ -14,4 +32,4 @@ const MemoryCardGame = (props) => {
     </div>
   )
 };
-export default MemoryCardGame;
+export default MemoryGameCard;
