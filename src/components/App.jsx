@@ -17,11 +17,15 @@ import GrafikOdKockica from './GrafikOdKockica';
 import SkolskiDnevnik from './SkolskiDnevnik';
 import ParkingGaraza from './ParkingGaraza';
 import TicTacToe from './TicTacToe';
+import MemoryGame from './MemoryGame';
 
 const App = () => {
   return (
     <>
       <div className="wrapper">
+        <div className='universal-okvir'>
+          <MemoryGame />
+        </div>
         <div className='universal-okvir'>
           <TicTacToe />
         </div>
