@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { getMemoryGameShuffledCards } from "../utils/memory-game-utils";
 import MemoryCardGame from "./MemoryGameCard";
 
 const MemoryGame = () => {
@@ -6,7 +7,7 @@ const MemoryGame = () => {
   const initialState = [
     null,
     null,
-    null,
+    "zeka",
     null,
     null,
     null,
@@ -23,6 +24,11 @@ const MemoryGame = () => {
   ];
   const [state, setState] = useState(initialState);
 
+  const handleRestart = () => {
+    // upisujej u state novi niz od 16 izmesanih karata
+    const svezeIzmesanihSesnaestKatara = getMemoryGameShuffledCards();
+    setState(svezeIzmesanihSesnaestKatara)
+  }
 
   return (
     <div>
@@ -32,10 +38,12 @@ const MemoryGame = () => {
         {
           state.map((card, index) => {
             return (
-             <MemoryCardGame key={index} />
+              <MemoryCardGame key={index} card={card} />
             )
           })
         }
+
+        <button onClick={handleRestart}>Reset</button>
       </div>
     </div>
   )
