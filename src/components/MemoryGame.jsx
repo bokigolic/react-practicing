@@ -7,7 +7,7 @@ const MemoryGame = () => {
   const initialState = [
     null,
     null,
-    "zeka",
+    null,
     null,
     null,
     null,

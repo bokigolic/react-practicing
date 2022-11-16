@@ -19,7 +19,24 @@ const allCards = [
   'SUNCE', // index 15
 ];
 
+const cardImages = {
+  'LOPTA': 'ball.jpg',
+  'SUNCE': 'sun.jpg',
+  'ZVEZDA': 'star.jpg',
+  'ZEKA' : 'rabbit.jpg',
+  'MEDA': 'bear.jpg',
+  'MESEC': 'moon.jpg',
+  'TESLA':'tesla.jpg',
+  'SRCE':'hart.jpg'
+};
 
+export const getMemoryGameCardImgSrc = (card)=> {
+  let src = ''; // nista ili default slika...
+  if (cardImages[card]) {
+    src = '/static/img/memory-game-images/' + cardImages[card];
+  }
+  return src;
+};
 
 
 export const getMemoryGameShuffledCards = () => {
@@ -43,3 +60,5 @@ export const getMemoryGameShuffledCards = () => {
   // popunjeno je svih 16 kartica
   return cards;
 }
+
+
