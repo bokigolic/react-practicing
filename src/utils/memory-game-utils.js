@@ -23,6 +23,11 @@ const cardImages = {
   'LOPTA': 'ball.jpg',
   'SUNCE': 'sun.jpg',
   'ZVEZDA': 'star.jpg',
+  'ZEKA' : 'rabbit.jpg',
+  'MEDA': 'bear.jpg',
+  'MESEC': 'moon.jpg',
+  'TESLA':'tesla.jpg',
+  'SRCE':'hart.jpg'
 };
 
 export const getMemoryGameCardImgSrc = (card)=> {
