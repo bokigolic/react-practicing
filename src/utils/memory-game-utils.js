@@ -62,3 +62,15 @@ export const getMemoryGameShuffledCards = () => {
 }
 
 
+let timeStart = 0; // Vreme u momentu kad smo zapoceli merenje vremena
+export const zapocniMerenjeVremena = () => {
+  timeStart = Date.now(); //upisujemo  trtenutni broj milisekundi iz casovnika racunara
+}
+export const zavrsiMerenjeVremena = () =>{
+  // izmeri koloko je proslo vreman od timeStart i returnuj to izmreno vreme
+  const timeNow = Date.now();
+  const usedTime = timeNow - timeStart; // proteklo vreme
+  return usedTime;
+}
+
+
