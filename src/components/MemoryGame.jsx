@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getMemoryGameShuffledCards, zapocniMerenjeVremena, zavrsiMerenjeVremena } from "../utils/memory-game-utils";
+import { getMemoryGameShuffledCards, miliSecondsToDisplayFormat, zapocniMerenjeVremena, zavrsiMerenjeVremena } from "../utils/memory-game-utils";
 import MemoryGameCard from "./MemoryGameCard";
 
 const MemoryGame = () => {
@@ -154,8 +154,38 @@ const MemoryGame = () => {
           })
         }
 
-        <button onClick={handleRestart}>Reset</button>
       </div>
+      <div>
+        <br />
+        <table className="memory-game-score">
+          <thead>
+            <tr>
+              <th className="text-left">Player name</th>
+              <th className="text-right">Time used</th>
+              <th className="text-right">Score</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            {
+              players.map((player, index) => {
+                const displayTime = miliSecondsToDisplayFormat(player.usedTime)
+                return (
+                  <tr key={index}>
+                    <td className="text-left">{player.name}</td>
+                    <td className="text-number">{displayTime}</td>
+                    <td className="text-number">{player.score}</td>
+                  </tr>
+                )
+              })
+            }
+
+          </tbody>
+        </table>
+      </div>
+      <p>
+        <button onClick={handleRestart}>Reset</button>
+      </p>
     </div>
   )
 };
