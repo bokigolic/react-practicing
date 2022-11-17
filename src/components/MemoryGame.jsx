@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getMemoryGameShuffledCards } from "../utils/memory-game-utils";
+import { getMemoryGameShuffledCards, zapocniMerenjeVremena, zavrsiMerenjeVremena } from "../utils/memory-game-utils";
 import MemoryGameCard from "./MemoryGameCard";
 
 const MemoryGame = () => {
@@ -25,16 +25,44 @@ const MemoryGame = () => {
   const [state, setState] = useState(initialState);
   const [firstOpenedCardIndex, setFirstOpenedCardIndex] = useState(null);
   const [secondOpenedCardIndex, setSecondOpenedCardIndex] = useState(null);
+  const [started, setStarted] = useState(false)
+  const [currentPlayer, setCurrentPlayer] = useState(0);
+  const initialPlayer = {
+    name: 'Alpha',
+    usedTime: 0,
+    score: 0, // nuber of pairs
+  }
+  const [players, setPlayers] = useState([initialPlayer])
+
+  const updatePlayerState = (usedTime, newPoints) => {
+    const updatedPlayers = players.map((player, index) => {
+      if (currentPlayer === index) {
+        // to je igrac koji igra
+        const updatedPlayer = {
+          ...player,
+          usedTime: player.usedTime + usedTime,
+          score: player.score + newPoints
+        }
+        return updatedPlayer
+      }
+      return player // svi ostali igraci neizmenjeni
+    });
+    setPlayers(updatedPlayers);
+  }
 
   useEffect(() => {
-    let zavrsena = true;
-    state.forEach(card => {
-      if (card !== null) {
-        zavrsena = false;
+    if (started === true) {
+      let zavrsena = true;
+      state.forEach(card => {
+        if (card !== null) {
+          zavrsena = false;
+        }
+      });
+      if (zavrsena) {
+        window.alert("Igra je zavrsena, klikni restart za novu igru")
+        setStarted(false) // igra je zavrsena
+        // TODO kad je igra zavrsena takodje trebamo zaustaviti merenje vremene
       }
-    });
-    if (zavrsena) {
-      window.alert("Igra je zavrsena, klikni restart za novu igru")
     }
   }, [state])
 
@@ -44,11 +72,13 @@ const MemoryGame = () => {
 
       // zatvaramo obe ali malo pricekamo
       setTimeout(() => {
+        let newPoints = 0;
         // provera da li su dve iste
         const firstCard = state[firstOpenedCardIndex];
         const secondCard = state[secondOpenedCardIndex];
         if (firstCard === secondCard) {
           // iste su
+          newPoints = 1;
           // moramo u state na njihove pozicije upisati null
           const updatedState = state.map((card, index) => {
             if (index === firstOpenedCardIndex || index === secondOpenedCardIndex) {
@@ -61,11 +91,18 @@ const MemoryGame = () => {
           setFirstOpenedCardIndex(null);
           setSecondOpenedCardIndex(null);
         } else {
-          //nisu iste
+          // nisu iste
           // zatvaramo obe
           setFirstOpenedCardIndex(null);
           setSecondOpenedCardIndex(null);
         }
+        // potez je zavrsen
+        // TODO zaustavljamo merenje vremena za igraca i upisemo u state tog igraca
+        const usedTime = zavrsiMerenjeVremena();
+        updatePlayerState(usedTime, newPoints);
+        // za sad podrazumevamo da ima samo jedan igrac...
+        // TODO zapocinjemo novi ciklus merenje
+        zapocniMerenjeVremena();
       }, 1000);
     }
 
@@ -73,9 +110,13 @@ const MemoryGame = () => {
 
 
   const handleRestart = () => {
-    // upisujej u state novi niz od 16 izmesanih karata
+    // upisuje u state novi niz od 16 izmesanih karata
     const svezeIzmesanihSesnaestKatara = getMemoryGameShuffledCards();
-    setState(svezeIzmesanihSesnaestKatara)
+    setState(svezeIzmesanihSesnaestKatara) // karte su izmesane i poslagane
+    setPlayers([initialPlayer])
+    setStarted(true) // igra je zapoceta
+    // TODO zapocinjemo merenje vremena za igraca
+    zapocniMerenjeVremena();
   }
 
   const clickOnCard = (index) => {
