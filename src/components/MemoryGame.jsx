@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getMemoryGameShuffledCards, miliSecondsToDisplayFormat, zapocniMerenjeVremena, zavrsiMerenjeVremena } from "../utils/memory-game-utils";
+import { miliSecondsToLongTimeWithoutHours } from "../utils/time-utils";
 import MemoryGameCard from "./MemoryGameCard";
 
 const MemoryGame = () => {
@@ -169,7 +170,8 @@ const MemoryGame = () => {
 
             {
               players.map((player, index) => {
-                const displayTime = miliSecondsToDisplayFormat(player.usedTime)
+                // const displayTime = miliSecondsToDisplayFormat(player.usedTime)
+                const displayTime = miliSecondsToLongTimeWithoutHours(player.usedTime)
                 return (
                   <tr key={index}>
                     <td className="text-left">{player.name}</td>
