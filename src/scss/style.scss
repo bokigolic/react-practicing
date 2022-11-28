@@ -605,6 +605,15 @@ table.tabelar-form {
           background-color: white;
         }
       }
+
+      .cheat-card {
+        z-index: 999;
+        color: red;
+        position: absolute;
+        top: 5px;
+        left: 3px;
+        font-size: 12px
+      }
     }
 
 
@@ -612,12 +621,13 @@ table.tabelar-form {
 
 }
 
-table.memory-game-score{
+table.memory-game-score {
   width: 280px;
   border-spacing: 0px;
   border-collapse: collapse;
 
-  th, td{
+  th,
+  td {
     border: 1px solid gray;
     padding: 0 3px;
   }

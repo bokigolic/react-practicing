@@ -33,7 +33,8 @@ const MemoryGame = () => {
     usedTime: 0,
     score: 0, // nuber of pairs
   }
-  const [players, setPlayers] = useState([initialPlayer])
+  const [players, setPlayers] = useState([initialPlayer]);
+  const [size, setSize] = useState(16);
 
   const updatePlayerState = (usedTime, newPoints) => {
     const updatedPlayers = players.map((player, index) => {
@@ -112,7 +113,7 @@ const MemoryGame = () => {
 
   const handleRestart = () => {
     // upisuje u state novi niz od 16 izmesanih karata
-    const svezeIzmesanihSesnaestKatara = getMemoryGameShuffledCards();
+    const svezeIzmesanihSesnaestKatara = getMemoryGameShuffledCards(size);
     setState(svezeIzmesanihSesnaestKatara) // karte su izmesane i poslagane
     setPlayers([initialPlayer])
     setStarted(true) // igra je zapoceta
@@ -137,10 +138,23 @@ const MemoryGame = () => {
     }
   }
 
+  // adaptiramo sirinu table za igru na broj kockica
+  let width = 4 * 70; // 4 columns default
+  if (size === 36) {
+    width = 6 * 70; // 6 columns
+  } else if (size === 64) {
+    width = 8 * 70; // 8 columns
+  }
+
   return (
     <div>
       <h2>Memory Game</h2>
-      <div className="memory-board">
+      <div
+        className="memory-board"
+        style={{
+          width: width + 'px'
+        }}
+      >
 
         {
           // crtanje svih kartica
@@ -186,7 +200,20 @@ const MemoryGame = () => {
         </table>
       </div>
       <p>
-        <button onClick={handleRestart}>Reset</button>
+        <select
+          value={size}
+          onChange={(e) => {
+            setSize(parseInt(e.target.value))
+          }}
+        >
+          <option value={4}>4 cards (2x2)</option>
+          <option value={16}>16 cards (4x4)</option>
+          <option value={36}>36 cards (6x6)</option>
+          <option value={64}>64 cards (8x8)</option>
+        </select>
+      </p>
+      <p>
+        <button onClick={handleRestart}>Reset / Start new game</button>
       </p>
     </div>
   )

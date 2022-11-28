@@ -17,6 +17,27 @@ const allCards = [
   'SRCE',
   'SUNCE',
   'SUNCE', // index 15
+  'AUTO',
+  'AUTO',
+  'REKET',
+  'REKET', // ukupno 20
+  'FLASA',
+  'FLASA',
+  'TELEFON',
+  'TELEFON',
+  'LAMPA',
+  'LAMPA',
+  'PALMA',
+  'PALMA',
+  'STO',
+  'STO', // ukupno 30
+  'FOTELJA',
+  'FOTELJA',
+  'CVET',
+  'CVET',
+  'KOCKA',
+  'KOCKA', // indx 35
+  // za doamci: dodati da bude 64 (index 63)
 ];
 
 const cardImages = {
@@ -27,7 +48,8 @@ const cardImages = {
   'MEDA': 'bear.jpg',
   'MESEC': 'moon.jpg',
   'TESLA': 'tesla.jpg',
-  'SRCE': 'hart.jpg'
+  'SRCE': 'hart.jpg',
+  // za domaci dopuniti sa novim slikama
 };
 
 export const getMemoryGameCardImgSrc = (card) => {
@@ -39,15 +61,16 @@ export const getMemoryGameCardImgSrc = (card) => {
 };
 
 
-export const getMemoryGameShuffledCards = () => {
+export const getMemoryGameShuffledCards = (size) => {
+  const maxIndex = size - 1;
   let cards = []; // shuffled izmesane carde
   const vecUpotrebljeniIndexi = [];
 
   // while petlja
-  while (cards.length < 16) {
+  while (cards.length <= maxIndex) {
     // while petlja vrti dok god ne bude 16 kartica
 
-    const randomIndex = getRandomIntInclusive(0, 15);
+    const randomIndex = getRandomIntInclusive(0, maxIndex);
     if (vecUpotrebljeniIndexi.includes(randomIndex)) {
       // tu karticu smo vec upotrebili
       // preskacemo...

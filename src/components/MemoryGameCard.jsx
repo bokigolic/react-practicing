@@ -6,6 +6,8 @@ const MemoryGameCard = (props) => {
   const isOpened = props.isOpened;
   const clickOnCard = props.clickOnCard;
 
+  const cheat = false;
+
   const handleClick = (e) => {
     clickOnCard(index)
   }
@@ -39,6 +41,11 @@ const MemoryGameCard = (props) => {
         <div className="back">
           <div className="memory-card" onClick={handleClick}></div>
         </div>
+        {
+          cheat ? (
+            <div className="cheat-card">{card}</div>
+          ) : (null)
+        }
       </div>
     )
 
