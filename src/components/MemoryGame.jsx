@@ -78,6 +78,24 @@ const MemoryGame = () => {
     setPlayers(updatedPlayers);
   }
 
+  const updatePlayerName = (index) => {
+    const name = window.prompt('Enter player name');
+    if (name.trim() !== '') {
+      const updatedPlayers = players.map((player, i) => {
+        if (index === i) {
+          // to je igrac koji igra
+          const updatedPlayer = {
+            ...player,
+            name: name.trim()
+          }
+          return updatedPlayer
+        }
+        return player // svi ostali igraci neizmenjeni
+      });
+      setPlayers(updatedPlayers);
+    }
+  }
+
   useEffect(() => {
     if (started === true) {
       let zavrsena = true;
@@ -243,7 +261,14 @@ const MemoryGame = () => {
                 }
                 return (
                   <tr key={index} className={isCurrentPlayer ? 'highlight' : ''}>
-                    <td className="text-left">{player.name}</td>
+                    <td className="text-left">
+                      {player.name} 
+                      <button
+                        onClick={(e)=>{updatePlayerName(index)}}
+                      >
+                        <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        </button>
+                    </td>
                     <td className="text-number">{displayTime}</td>
                     <td className="text-number">{player.score}</td>
                   </tr>
