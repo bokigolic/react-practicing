@@ -43,6 +43,21 @@ const MemoryGame = () => {
     usedTime: 0,
     score: 0, // nuber of pairs
   }
+  const initialPlayer1 = {
+    name: 'Bravo',
+    usedTime: 0,
+    score: 0, // nuber of pairs
+  }
+  const initialPlayer2 = {
+    name: 'Charlie',
+    usedTime: 0,
+    score: 0, // nuber of pairs
+  }
+  const initialPlayer3 = {
+    name: 'Delta',
+    usedTime: 0,
+    score: 0, // nuber of pairs
+  }
   const [players, setPlayers] = useState([initialPlayer]);
   const [howManyPlayers, setHowManyPlayers] = useState(1)
   const [size, setSize] = useState(16);
@@ -61,6 +76,24 @@ const MemoryGame = () => {
       return player // svi ostali igraci neizmenjeni
     });
     setPlayers(updatedPlayers);
+  }
+
+  const updatePlayerName = (index) => {
+    const name = window.prompt('Enter player name');
+    if (name.trim() !== '') {
+      const updatedPlayers = players.map((player, i) => {
+        if (index === i) {
+          // to je igrac koji igra
+          const updatedPlayer = {
+            ...player,
+            name: name.trim()
+          }
+          return updatedPlayer
+        }
+        return player // svi ostali igraci neizmenjeni
+      });
+      setPlayers(updatedPlayers);
+    }
   }
 
   useEffect(() => {
@@ -138,11 +171,11 @@ const MemoryGame = () => {
     if (howManyPlayers === 1) {
       setPlayers([initialPlayer]);
     } else if (howManyPlayers === 2) {
-      setPlayers([initialPlayer, initialPlayer])
+      setPlayers([initialPlayer, initialPlayer1])
     } else if (howManyPlayers === 3) {
-      setPlayers([initialPlayer, initialPlayer, initialPlayer])
+      setPlayers([initialPlayer, initialPlayer1, initialPlayer2])
     } else if (howManyPlayers === 4) {
-      setPlayers([initialPlayer, initialPlayer, initialPlayer, initialPlayer])
+      setPlayers([initialPlayer, initialPlayer1, initialPlayer2, initialPlayer3])
     }
     setStarted(true) // igra je zapoceta
     // TODO zapocinjemo merenje vremena za igraca
@@ -166,6 +199,11 @@ const MemoryGame = () => {
     }
   }
 
+
+  // pripremamo od trenutnog igraca
+  const currentPlayerData = players[currentPlayer];
+  const currentPlayerName = currentPlayerData.name;
+
   // adaptiramo sirinu table za igru na broj kockica
   let width = 4 * 70; // 4 columns default
   if (size === 36 || size === 24) {
@@ -179,7 +217,7 @@ const MemoryGame = () => {
   return (
     <div>
       <h2>Memory Game</h2>
-      <p>Player {currentPlayer} make your move</p>
+      <p>Player {currentPlayerName} make your move</p>
       <div
         className="memory-board"
         style={{
@@ -218,12 +256,19 @@ const MemoryGame = () => {
                 // const displayTime = miliSecondsToDisplayFormat(player.usedTime)
                 const displayTime = miliSecondsToLongTimeWithoutHours(player.usedTime);
                 let isCurrentPlayer = false;
-                if(index === currentPlayer){
+                if (index === currentPlayer) {
                   isCurrentPlayer = true;
                 }
                 return (
                   <tr key={index} className={isCurrentPlayer ? 'highlight' : ''}>
-                    <td className="text-left">{player.name}</td>
+                    <td className="text-left">
+                      {player.name} 
+                      <button
+                        onClick={(e)=>{updatePlayerName(index)}}
+                      >
+                        <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        </button>
+                    </td>
                     <td className="text-number">{displayTime}</td>
                     <td className="text-number">{player.score}</td>
                   </tr>
