@@ -18,11 +18,15 @@ import SkolskiDnevnik from './SkolskiDnevnik';
 import ParkingGaraza from './ParkingGaraza';
 import TicTacToe from './TicTacToe';
 import MemoryGame from './MemoryGame';
+import Slovarica from './Slovarica';
 
 const App = () => {
   return (
     <>
       <div className="wrapper">
+        <div className='universal-okvir'>
+          <Slovarica />
+        </div>
         <div className='universal-okvir'>
           <MemoryGame />
         </div>
