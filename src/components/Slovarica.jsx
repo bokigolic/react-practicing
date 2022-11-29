@@ -5,6 +5,8 @@ import SlovaricaKartice from "./SlovaricaKartice";
 
 /*
 CILJEVI I IDEJE:
+- baratanje sa 3 tipa kartica SAM OSLOVO, SAMO SLIKA i SLOVO+SLIKA
+- baratanje sa razmakom (prazna kartica)
 - na vrhu opcije ćirilica/latinica
 */
 const Slovarica = () => {
@@ -35,6 +37,16 @@ const Slovarica = () => {
   }
 
 
+  const handleClickObrisiSve = () => {
+    setTekst("")
+  }
+
+
+  const handleClickObrisiZadnjeSlovo = () => {
+    let iseceniTekst = tekst.slice(0, tekst.length - 1)
+    setTekst(iseceniTekst)
+  }
+
   // pripremamo state tekst kao Array da bi mogli sa map da ga pretvaramo u kartice.
   const tekstNiz = tekst.split("");
 
@@ -50,6 +62,10 @@ const Slovarica = () => {
           value={tekst}
           onChange={handleChangeZaKlasicnoPolje}
         />
+        &nbsp;
+        <button onClick={handleClickObrisiZadnjeSlovo}><i className="fa fa-caret-square-o-left" aria-hidden="true"></i></button>
+        &nbsp;
+        <button onClick={handleClickObrisiSve}>Obrisi sve</button>
       </section>
 
 
