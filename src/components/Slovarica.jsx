@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { abeceda } from "../utils/slovarica-utils";
 
 
 /*
@@ -86,15 +87,15 @@ const Slovarica = () => {
 
       <section>
         <div className="slovarica-board">
-
-          <div className="item">
-            <div className="slovarica-kartica">A</div>
-          </div>
-          <div className="item">
-            <div className="slovarica-kartica">A</div>
-          </div>
-
-
+          {
+            abeceda.map((slovo) => {
+              return (
+                <div key={slovo} className="item">
+                  <div className="slovarica-kartica">{slovo}</div>
+                </div>
+              )
+            })
+          }
         </div>
 
       </section>
