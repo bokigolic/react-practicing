@@ -657,9 +657,11 @@ table.memory-game-score {
     flex-direction: row;
     justify-content: flex-start;
 
-    input.specijalniinput{
+    input.specijalniinput {
       border: 1px dashed red;
       flex: 1;
+      margin-top: 5px;
+      margin-bottom: 5px;
     }
   }
 
@@ -678,7 +680,7 @@ table.memory-game-score {
     width: 70px;
     height: 70px;
     padding: 5px;
-    overflow: hidden;
+    overflow: visible;
 
     >.slovarica-kartica {
       width: 60px;
@@ -689,10 +691,11 @@ table.memory-game-score {
 
       box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%), 0 1px 5px 0 rgb(0 0 0 / 20%);
 
-      &:hover {
-        box-shadow: 0 4px 5px 0 rgb(0 0 0 / 14%), 0 1px 10px 0 rgb(0 0 0 / 12%), 0 2px 4px -1px rgb(0 0 0 / 30%);
-
-
+      &.clickable:hover {
+        /* box-shadow: 0 4px 5px 0 rgb(0 0 0 / 14%), 0 1px 10px 0 rgb(0 0 0 / 12%), 0 2px 4px -1px rgb(0 0 0 / 30%); */
+        transform: scale(1.1);
+        box-shadow: 0 8px 17px 2px rgb(0 0 0 / 14%), 0 3px 14px 2px rgb(0 0 0 / 12%), 0 5px 5px -3px rgb(0 0 0 / 20%);
+        cursor: pointer;
       }
     }
   }
