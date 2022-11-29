@@ -656,6 +656,11 @@ table.memory-game-score {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+
+    input.specijalniinput{
+      border: 1px dashed red;
+      flex: 1;
+    }
   }
 
   .slovarica-board {
@@ -669,6 +674,7 @@ table.memory-game-score {
   }
 
   .item {
+    min-width: 70px;
     width: 70px;
     height: 70px;
     padding: 5px;
