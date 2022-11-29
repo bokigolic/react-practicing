@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { abeceda } from "../utils/slovarica-utils";
+import SlovaricaKartice from "./SlovaricaKartice";
 
 
 /*
@@ -30,6 +31,8 @@ const Slovarica = () => {
   }
 
 
+  // pripremamo state tekst kao Array da bi mogli sa map da ga pretvaramo u kartice.
+  const tekstNiz = tekst.split("");
 
 
   return (
@@ -48,9 +51,13 @@ const Slovarica = () => {
 
       <section>
         <div className="magicni-input">
-          <div className="item">
-            <div className="slovarica-kartica">A</div>
-          </div>
+          {
+            tekstNiz.map((slovo) => {
+              return (
+                <SlovaricaKartice key={slovo} slovo={slovo} />
+              )
+            })
+          }
 
           <input
             className="specijalniinput"
@@ -66,12 +73,13 @@ const Slovarica = () => {
 
       <section>
         <div className="magicni-input">
-          <div className="item">
-            <div className="slovarica-kartica">A</div>
-          </div>
-          <div className="item">
-            <div className="slovarica-kartica">A</div>
-          </div>
+          {
+            tekstNiz.map((slovo) => {
+              return (
+                <SlovaricaKartice key={slovo} slovo={slovo} />
+              )
+            })
+          }
 
           <input
             className="specijalniinput"
@@ -90,9 +98,7 @@ const Slovarica = () => {
           {
             abeceda.map((slovo) => {
               return (
-                <div key={slovo} className="item">
-                  <div className="slovarica-kartica">{slovo}</div>
-                </div>
+                <SlovaricaKartice key={slovo} slovo={slovo} />
               )
             })
           }
