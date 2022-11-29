@@ -30,6 +30,10 @@ const Slovarica = () => {
     setSpecijalniinput("")
   }
 
+  const clickNaKarticu = (slovo) => {
+    setTekst(tekst + slovo)
+  }
+
 
   // pripremamo state tekst kao Array da bi mogli sa map da ga pretvaramo u kartice.
   const tekstNiz = tekst.split("");
@@ -98,7 +102,7 @@ const Slovarica = () => {
           {
             abeceda.map((slovo) => {
               return (
-                <SlovaricaKartice key={slovo} slovo={slovo} />
+                <SlovaricaKartice key={slovo} slovo={slovo} clickable clickNaKarticu={clickNaKarticu} />
               )
             })
           }
