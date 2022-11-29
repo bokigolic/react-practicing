@@ -649,9 +649,11 @@ table.memory-game-score {
 
 
   .magicni-input {
-    border: 1px solid blue;
+    border: 2px solid gray;
+    border-radius: 16px;
     /* height: 30px; */
     width: 100%;
+    min-height: 74px;
 
     display: flex;
     flex-direction: row;
