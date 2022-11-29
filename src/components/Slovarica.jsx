@@ -68,17 +68,15 @@ const Slovarica = () => {
         <button onClick={handleClickObrisiSve}>Obrisi sve</button>
       </section>
 
-
       <section>
         <div className="magicni-input">
           {
             tekstNiz.map((slovo) => {
               return (
-                <SlovaricaKartice key={slovo} slovo={slovo} />
+                <SlovaricaKartice key={slovo} slovo={slovo} tip="SLOVO" />
               )
             })
           }
-
           <input
             className="specijalniinput"
             name="specijalniinput"
@@ -86,9 +84,27 @@ const Slovarica = () => {
             onChange={handleChangeZaSpecijalniInput}
             maxLength="1"
           />
-
         </div>
+      </section>
 
+
+      <section>
+        <div className="magicni-input">
+          {
+            tekstNiz.map((slovo) => {
+              return (
+                <SlovaricaKartice key={slovo} slovo={slovo} tip="SLIKA" />
+              )
+            })
+          }
+          <input
+            className="specijalniinput"
+            name="specijalniinput"
+            value={specijalniinput}
+            onChange={handleChangeZaSpecijalniInput}
+            maxLength="1"
+          />
+        </div>
       </section>
 
       <section>
@@ -100,7 +116,6 @@ const Slovarica = () => {
               )
             })
           }
-
           <input
             className="specijalniinput"
             name="specijalniinput"
@@ -108,10 +123,9 @@ const Slovarica = () => {
             onChange={handleChangeZaSpecijalniInput}
             maxLength="1"
           />
-
         </div>
-
       </section>
+
 
       <section>
         <div className="slovarica-board">

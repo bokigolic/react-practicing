@@ -685,13 +685,44 @@ table.memory-game-score {
     overflow: visible;
 
     >.slovarica-kartica {
+      position: relative;
       width: 60px;
       height: 60px;
       background-color: silver;
       border: 1px solid black;
       border-radius: 10px;
+      overflow: hidden;
+      padding: 0px;
 
       box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%), 0 1px 5px 0 rgb(0 0 0 / 20%);
+
+      &.kartica-tip-slovo{
+        text-align: center;
+        line-height: 60px;
+        font-size: 36px;
+        font-weight: 600;
+      }
+
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+      }
+
+      span{
+        position: absolute;
+        z-index: 999;
+        top: 0px;
+        left: 5px;
+        width: 14px;
+        height: 14px;
+        line-height: 13px;
+        border-radius: 14px;
+        text-align: center;
+        background-color: rgba(255,255,255, 1);
+        font-weight: 600;
+        font-size: 12px;
+      }
 
       &.clickable:hover {
         /* box-shadow: 0 4px 5px 0 rgb(0 0 0 / 14%), 0 1px 10px 0 rgb(0 0 0 / 12%), 0 2px 4px -1px rgb(0 0 0 / 30%); */
